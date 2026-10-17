@@ -1,0 +1,35 @@
+# Log de decisões
+
+Formato: data · decisão · motivo. Mais recente no topo.
+
+## 2026-10-16 (noite, 2)
+- **Personagem fixo nos vídeos: Teo**, menino negro, engraçado, cabelo black power, roupa nas cores da logo. Nome provisório. Motivo: identidade e reconhecimento pela criança entre vídeos.
+- **Vídeos são gerados por IA, não animados por código.** Um gerador em código foi tentado e descartado no mesmo dia. Motivo: decisão do Vini, o produto precisa de vídeo de verdade.
+- **Primeira ação com prompts prontos: chutar** (arte marcial, futebol, natação). Ver `11-personagem-e-prompts.md`.
+
+## 2026-10-16 (noite)
+- **Emenda lúdica na spec 001**: animações de entrada e toque (pop, wiggle, slide) e efeitos sonoros sintetizados (pop, tick, ding). Motivo: pedido do Vini para deixar mais lúdico.
+- **Som vira interruptor único do app**, desligado por padrão e lembrado no aparelho via localStorage. Controla vídeos e efeitos. Motivo: um conceito só para a criança, e garante que nada toca som sem alguém ligar.
+
+## 2026-10-16 (tarde)
+- **Spec Kit instalado** (`.specify/`, skills `/speckit-*`). Spec 001 "Tela pública" cobre NM-01 a 08 e NM-10. NM-09 (voz) fica no backlog.
+- **App criado em `app/`**: Next.js 16, React 19, Tailwind 4. Scaffold veio com `cacheComponents` ligado; desligado de propósito para não complicar a troca de seed por Supabase.
+- **Dados da Fase 1 em `src/data/seed.json`** lidos por `src/lib/data.ts`. Motivo: admin (NM-11 a 15) ainda não foi aprovado; quando for, só a camada de dados muda.
+- **Logo vetorial convertida para SVG** (`app/public/logo-mark.svg`) direto do PDF. Wordmark renderizado em Bebas Neue via fonte web, não como path.
+- **Player sem loop**: ao terminar, mostra "ver de novo". Motivo: a criança decide; e a futura métrica de "viu até o fim" (NM-17) precisa do evento de término.
+
+## 2026-10-16
+- **Wiki criada** a partir da transcrição da reunião de 14/10 e da logo. Estrutura: 9 docs + log.
+- **Cores extraídas do vetor da logo**: amarelo `#F8E600`, azul `#009ADA`, vermelho `#FC0000`, verde `#45A102`, preto e branco. Fonte do wordmark: Bebas Neue. UI usará Nunito para corpo.
+- **Stack travada**: Next.js + Tailwind + Supabase (Postgres, Storage, Auth na Fase 2) + Vercel. Motivo: deploy em minutos, custo zero, um dev mantém sozinho.
+- **Admin da Fase 1 com senha única** em variável de ambiente. Motivo: a equipe de conteúdo precisa de independência já na Mostra, sem construir auth completo.
+- **Métricas anônimas entram na Fase 1**. Motivo: custo baixo e dá evidência de uso para a FENIC desde o primeiro dia.
+- **Proporção dos vídeos: 16:9, 5 a 8 s, até 15 MB**. Motivo: tablet em paisagem no stand, player simples, storage gratuito aguenta.
+
+## 2026-10-14 (reunião de kickoff)
+- **Vini desenvolve e hospeda sem custo.** Equipe de conteúdo gera os vídeos. Motivo: o gargalo é vídeo, não código.
+- **Fase 1 é pública, sem login.** Motivo: prazo de 6 dias e uso no stand por público aberto. Decisão da Nina, aceita por todos.
+- **Login, prancha por aluno e relatório ficam para a Fase 2.** Motivo: valor para o profissional está em escolher ações por criança e saber se usou. Precisa existir, mas não até a Mostra.
+- **Gamificação adiada.** Motivo: "mais trabalho do que valor" numa primeira versão (Vini). Nina concordou.
+- **Criança nunca identificada por nome real.** Motivo: LGPD, dados sensíveis. Uso por apelido vinculado a um responsável adulto.
+- **Objetivo é causa, não negócio.** Conversa comercial só daqui a 12 meses, se houver resultado.

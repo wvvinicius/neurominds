@@ -1,0 +1,75 @@
+# 03 · Domínio e fluxos
+
+## Vocabulário
+| Termo | Significado | Na reunião chamaram de |
+|---|---|---|
+| **Ação** | Verbo que a criança precisa compreender. Ex.: chutar, abraçar, pular. | gatilho, tema, cartinha |
+| **Vídeo** | Clipe curto gerado por IA mostrando a ação em um contexto. Uma ação tem vários. | vídeo, situação |
+| **Carta** | Representação visual da ação na tela inicial. | cartinha, caixinha |
+| **Biblioteca** | Conjunto de todas as ações e vídeos cadastrados. | acervo |
+| **Prancha** (Fase 2) | Subconjunto de ações escolhido pelo profissional para um aluno. | prancha, prancheta |
+| **Aluno** (Fase 2) | Criança que usa, identificada por apelido. | paciente, estudante, João, Maria |
+| **Sessão** (Fase 2) | Período de uso contínuo de uma prancha por um aluno. | uso, jornada |
+| **Evento** | Registro de uma interação (abriu ação, viu vídeo). | indicador, pontuação |
+
+## Modelo de dados
+
+### Fase 1
+```
+action   id, slug, name, emoji, color, sort_order, is_active, created_at
+video    id, action_id, storage_path, caption, sort_order, is_active, created_at
+event    id, anon_session_id, type, action_id?, video_id?, duration_ms?, created_at
+```
+`event.type`: `open_home` · `open_action` · `play_video` · `finish_video`
+
+### Fase 2 (acrescenta)
+```
+professional  id (= auth.users.id), name, created_at
+student       id, professional_id, nickname, guardian_email, access_token, created_at
+board         id, student_id, name, created_at
+board_action  board_id, action_id, sort_order
+session       id, student_id, board_id, started_at, ended_at, in_person
+event         + session_id? (nulo quando o uso é anônimo)
+```
+Regras:
+- `student.nickname` nunca é nome real. Nenhum campo de diagnóstico, idade ou laudo.
+- `access_token` é o que vai no link do convite. A criança não tem senha.
+- Um aluno pode ter várias pranchas, uma por fase do atendimento.
+
+## Fluxos
+
+### F1 · Criança na Mostra (Fase 1)
+1. Abre o site. Vê as cartas de ações, grandes e coloridas.
+2. Toca em "chutar". A carta abre e mostra o primeiro vídeo.
+3. Assiste. Toca em "próximo" e vê outro contexto de chutar.
+4. Toca na seta grande de voltar e escolhe outra carta.
+
+Métricas anônimas gravadas em segundo plano.
+
+### F2 · Equipe de conteúdo alimenta a biblioteca (Fase 1)
+1. Entra em `/admin` com a senha.
+2. Cria a ação "Chutar", escolhe emoji e cor.
+3. Sobe de 3 a 5 vídeos mp4, ordena, salva.
+4. A ação aparece na tela pública na hora.
+
+### F3 · Profissional monta prancha (Fase 2)
+1. Faz login. Cadastra o aluno "Joca" com o e-mail da mãe.
+2. Cria a prancha "Rotina de casa" escolhendo 6 ações da biblioteca.
+3. Clica em "convidar". A mãe recebe e-mail com o link.
+
+### F4 · Criança usa em casa (Fase 2)
+1. A mãe abre o link no tablet. Vê só as 6 ações da prancha do Joca.
+2. A criança usa igual ao F1. A sessão fica vinculada ao Joca.
+
+### F5 · Profissional lê o relatório (Fase 2)
+1. Abre o aluno. Vê as sessões: data, duração, presencial ou em casa.
+2. Vê por ação: quantas vezes abriu, quantos vídeos viu até o fim.
+3. Decide: mantém a prancha ou monta outra.
+
+## O que o relatório precisa responder (Fase 2)
+- O aluno usou? Quantas vezes? Quando?
+- Ficou quanto tempo? Ficou parado ou interagiu?
+- Quais ações mais abriu? Quais ignorou?
+- Assistiu os vídeos até o fim?
+
+Nada além disso até um profissional pedir.

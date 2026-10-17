@@ -1,0 +1,15 @@
+# dependências e builds (o app/ tem o próprio .gitignore)
+node_modules/
+.next/
+out/
+
+# ambiente
+.env
+.env.*
+
+# sistema
+.DS_Store
+Thumbs.db
+
+# transcrição da reunião: cita alunas menores de idade pelo nome. Fica só local.
+insumos/*.md

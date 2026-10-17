@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* Tokens da logo NeuroMinds. Ver wiki/05-design-system.md. */
+@theme inline {
+  --color-nm-yellow: #f8e600;
+  --color-nm-blue: #009ada;
+  --color-nm-red: #fc0000;
+  --color-nm-green: #45a102;
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+
+  --font-sans: var(--font-nunito), "Nunito", system-ui, sans-serif;
+  --font-display: var(--font-bebas), "Bebas Neue", Impact, sans-serif;
+
+  /* Animações lúdicas. Curtas, uma vez só, nunca em loop no fundo. */
+  --ease-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-pop: nm-pop 0.5s var(--ease-bouncy) both;
+  --animate-wiggle: nm-wiggle 0.5s ease-in-out;
+  --animate-slide-left: nm-slide-left 0.4s var(--ease-bouncy) both;
+  --animate-slide-up: nm-slide-up 0.45s var(--ease-bouncy) both;
+  --animate-pulse-soft: nm-pulse-soft 1.6s ease-in-out infinite;
+  --animate-wave: nm-wave 1s ease-in-out infinite;
+}
+
+@keyframes nm-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(16px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06) translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nm-wiggle {
+  0%,
+  100% {
+    transform: rotate(0) scale(1);
+  }
+  25% {
+    transform: rotate(-12deg) scale(1.15);
+  }
+  75% {
+    transform: rotate(12deg) scale(1.15);
+  }
+}
+
+@keyframes nm-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nm-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nm-pulse-soft {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes nm-wave {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  /* Tela de criança: sem zoom por duplo toque, sem seleção acidental. */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Faixa do arco-íris da logo, estática. */
+.nm-stripe {
+  height: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--color-nm-yellow) 0 25%,
+    var(--color-nm-blue) 25% 50%,
+    var(--color-nm-red) 50% 75%,
+    var(--color-nm-green) 75%
+  );
+}
+
+/* Foco visível para teclado, sem poluir o toque. */
+:focus-visible {
+  outline: 4px solid var(--color-nm-blue);
+  outline-offset: 3px;
+}
+
+/* Acessibilidade TEA: quem pede menos movimento não vê transição nenhuma. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

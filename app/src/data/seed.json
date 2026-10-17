@@ -1,0 +1,84 @@
+{
+  "actions": [
+    {
+      "id": "chutar",
+      "slug": "chutar",
+      "name": "Chutar",
+      "emoji": "⚽",
+      "color": "blue",
+      "sortOrder": 1,
+      "isActive": true,
+      "videos": []
+    },
+    {
+      "id": "abracar",
+      "slug": "abracar",
+      "name": "Abraçar",
+      "emoji": "🤗",
+      "color": "red",
+      "sortOrder": 2,
+      "isActive": true,
+      "videos": []
+    },
+    {
+      "id": "pular",
+      "slug": "pular",
+      "name": "Pular",
+      "emoji": "🦘",
+      "color": "green",
+      "sortOrder": 3,
+      "isActive": true,
+      "videos": []
+    },
+    {
+      "id": "correr",
+      "slug": "correr",
+      "name": "Correr",
+      "emoji": "🏃",
+      "color": "yellow",
+      "sortOrder": 4,
+      "isActive": true,
+      "videos": []
+    },
+    {
+      "id": "comer",
+      "slug": "comer",
+      "name": "Comer",
+      "emoji": "🍎",
+      "color": "red",
+      "sortOrder": 5,
+      "isActive": true,
+      "videos": []
+    },
+    {
+      "id": "dormir",
+      "slug": "dormir",
+      "name": "Dormir",
+      "emoji": "😴",
+      "color": "blue",
+      "sortOrder": 6,
+      "isActive": true,
+      "videos": []
+    },
+    {
+      "id": "lavar",
+      "slug": "lavar",
+      "name": "Lavar",
+      "emoji": "🧼",
+      "color": "yellow",
+      "sortOrder": 7,
+      "isActive": true,
+      "videos": []
+    },
+    {
+      "id": "brincar",
+      "slug": "brincar",
+      "name": "Brincar",
+      "emoji": "🧸",
+      "color": "green",
+      "sortOrder": 8,
+      "isActive": true,
+      "videos": []
+    }
+  ]
+}
