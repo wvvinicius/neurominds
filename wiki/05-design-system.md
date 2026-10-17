@@ -49,11 +49,11 @@ Cada ação recebe uma das quatro famílias no cadastro. A grade alterna as fam�
 - **Entrada:** cartas fazem "pop" em cascata (70 ms entre cada), logo e botão de voltar deslizam, título da ação sobe e o emoji balança uma vez.
 - **Toque:** carta sobe levemente no hover, encolhe no toque, emoji balança. Botões crescem no hover e encolhem no toque.
 - **Loops permitidos:** só o pulso suave do "ver de novo" e as ondinhas do ícone de som ligado. Nada mais se move sozinho.
-- **Som:** um interruptor único, desligado por padrão, lembrado no aparelho. Liga o áudio dos vídeos e os efeitos: blip suave ao passar o mouse (só mouse, nunca no toque), pop (carta), tick (navegar, voltar), duas notas (ligar/desligar), ding (vídeo terminou). Sintetizados com Web Audio, sem arquivos.
+- **Som:** um interruptor único, **ligado por padrão**, lembrado no aparelho. O navegador só libera áudio automático depois do primeiro toque na página; quando barra, o vídeo segue mudo e aparece "Toque para ouvir". Liga o áudio dos vídeos e os efeitos: blip suave ao passar o mouse (só mouse, nunca no toque), pop (carta), tick (navegar, voltar), duas notas (ligar/desligar), ding (vídeo terminou). Sintetizados com Web Audio, sem arquivos.
 - **Faixa do arco-íris:** linha estática de 8 px com as quatro cores no topo de cada tela.
 
 ## Acessibilidade para TEA (obrigatório)
-- Sem som automático. O vídeo começa mudo; botão de som visível e grande.
+- Som ligado por padrão, com botão de som grande e sempre visível para desligar. Nada além do vídeo e dos efeitos de toque produz som.
 - Sem autoplay do próximo vídeo. A criança decide quando avançar.
 - Sem animação de fundo, sem confete, sem elementos que se movem sozinhos.
 - Layout previsível: botão de voltar sempre no mesmo lugar (canto superior esquerdo), mesmo tamanho, mesmo ícone.

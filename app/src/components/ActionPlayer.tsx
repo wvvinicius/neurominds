@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Video } from "@/lib/data";
-import { onHover, play, useSoundOn } from "@/lib/sound";
+import { onHover, play, startWithSound, useSoundOn } from "@/lib/sound";
 import { SoundToggle } from "./SoundToggle";
+import { UnmuteHint } from "./UnmuteHint";
 
 type Props = {
   videos: Video[];
@@ -114,7 +115,21 @@ function VideoStage({ video, muted, onPlay, onEnded }: StageProps) {
   const [paused, setPaused] = useState(false);
   const [ended, setEnded] = useState(false);
   const [error, setError] = useState(false);
+  const [blocked, setBlocked] = useState(false);
   const ref = useRef<HTMLVideoElement>(null);
+  const started = useRef(false);
+
+  // canplay dispara de novo após seek; inicia só uma vez.
+  const start = () => {
+    if (started.current || !ref.current) return;
+    started.current = true;
+    startWithSound(ref.current).then(setBlocked);
+  };
+
+  const unmute = () => {
+    if (ref.current) ref.current.muted = false;
+    setBlocked(false);
+  };
 
   // React não sincroniza a propriedade `muted` de forma confiável; fazemos à mão.
   useEffect(() => {
@@ -143,8 +158,7 @@ function VideoStage({ video, muted, onPlay, onEnded }: StageProps) {
         src={video.src}
         playsInline
         preload="auto"
-        autoPlay
-        muted
+        onCanPlay={start}
         onClick={togglePlay}
         onPlay={() => {
           setPaused(false);
@@ -160,6 +174,8 @@ function VideoStage({ video, muted, onPlay, onEnded }: StageProps) {
         onError={() => setError(true)}
         className="aspect-video w-full"
       />
+
+      {blocked && !error && !ended && <UnmuteHint onClick={unmute} />}
 
       {/* Erro de carregamento: mensagem curta, navegação continua */}
       {error && (

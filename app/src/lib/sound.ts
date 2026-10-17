@@ -3,9 +3,12 @@
 import { useSyncExternalStore } from "react";
 
 /**
- * Som do app: um único interruptor, desligado por padrão, lembrado no aparelho.
+ * Som do app: um único interruptor, LIGADO por padrão, lembrado no aparelho.
  * Controla o áudio dos vídeos e os efeitos sonoros da interface.
  * Efeitos são sintetizados com Web Audio: sem arquivos, sem download.
+ *
+ * Limite do navegador: antes do primeiro toque na página, vídeo só toca mudo.
+ * `startWithSound` tenta com som e cai para mudo se for barrado.
  */
 
 const KEY = "nm-sound";
@@ -13,9 +16,25 @@ const listeners = new Set<() => void>();
 
 export function isSoundOn(): boolean {
   try {
-    return localStorage.getItem(KEY) === "on";
+    return localStorage.getItem(KEY) !== "off";
   } catch {
+    return true;
+  }
+}
+
+/**
+ * Inicia o vídeo respeitando o interruptor. Retorna true se o navegador
+ * barrou o áudio (vídeo seguiu mudo) e a tela deve oferecer "toque para ouvir".
+ */
+export async function startWithSound(el: HTMLVideoElement): Promise<boolean> {
+  el.muted = !isSoundOn();
+  try {
+    await el.play();
     return false;
+  } catch {
+    el.muted = true;
+    el.play().catch(() => {});
+    return isSoundOn();
   }
 }
 
@@ -37,10 +56,10 @@ function subscribe(cb: () => void) {
   };
 }
 
-const serverOff = () => false;
+const serverDefault = () => true;
 
 export function useSoundOn(): boolean {
-  return useSyncExternalStore(subscribe, isSoundOn, serverOff);
+  return useSyncExternalStore(subscribe, isSoundOn, serverDefault);
 }
 
 /* ---------- Sintetizador ---------- */

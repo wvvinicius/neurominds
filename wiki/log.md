@@ -2,6 +2,10 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-16 (noite, 5)
+- **Som ligado por padrão.** Antes era desligado. Motivo: decisão do Vini. Limite do navegador: antes do primeiro toque, vídeo só toca mudo; a tela mostra "Toque para ouvir" e um toque libera. Constituição e design system atualizados.
+- **Intro: ao terminar oferece Repetir ou Seguir.** Nada avança sozinho.
+
 ## 2026-10-16 (noite, 4)
 - **Introdução com o Teo (NM-37)**: ao abrir o site, tela animada de carregamento e vídeo de apresentação, com "Pular". Aparece uma vez por sessão do navegador, para não repetir a cada volta às cartas. Vídeo em `app/public/intro/`. Motivo: pedido do Vini.
 

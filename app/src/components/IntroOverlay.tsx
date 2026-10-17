@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { play, useSoundOn } from "@/lib/sound";
+import { play, startWithSound, useSoundOn } from "@/lib/sound";
 import { SoundToggle } from "./SoundToggle";
+import { UnmuteHint } from "./UnmuteHint";
 
 const KEY = "nm-intro-seen";
 const VIDEO = "/intro/apresentacao-teo.mp4";
@@ -26,6 +27,7 @@ const seenOnServer = () => false;
 export function IntroOverlay() {
   const seen = useSyncExternalStore(subscribe, seenOnClient, seenOnServer);
   const [ready, setReady] = useState(false);
+  const [blocked, setBlocked] = useState(false);
   const [ended, setEnded] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const [gone, setGone] = useState(false);
@@ -55,12 +57,23 @@ export function IntroOverlay() {
     finish();
   };
 
+  const start = () => {
+    if (ready || !ref.current) return;
+    setReady(true);
+    startWithSound(ref.current).then(setBlocked);
+  };
+
+  const unmute = () => {
+    if (ref.current) ref.current.muted = false;
+    setBlocked(false);
+  };
+
   const replay = () => {
     play("pop");
     setEnded(false);
     if (ref.current) {
       ref.current.currentTime = 0;
-      ref.current.play().catch(() => {});
+      startWithSound(ref.current).then(setBlocked);
     }
   };
 
@@ -79,11 +92,9 @@ export function IntroOverlay() {
         <video
           ref={ref}
           src={VIDEO}
-          autoPlay
-          muted
           playsInline
           preload="auto"
-          onCanPlay={() => setReady(true)}
+          onCanPlay={start}
           onEnded={() => {
             setEnded(true);
             play("done");
@@ -91,6 +102,8 @@ export function IntroOverlay() {
           onError={finish}
           className={`aspect-video w-full rounded-2xl bg-ink ${ready ? "motion-safe:animate-pop" : ""}`}
         />
+
+        {blocked && !ended && <UnmuteHint onClick={unmute} />}
 
         {/* Terminou: repetir ou seguir */}
         {ended && (
