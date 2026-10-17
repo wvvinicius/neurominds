@@ -25,7 +25,7 @@ Duas camadas. As cores puras da logo são **marca**: aparecem na logo e em detal
 Neutros: `ink #1A1A1A` (texto), `paper #FFFFFF` (fundo de tela), `mist #F3F3F0` (botão secundário), `fog #E4E4DF` (hover do secundário, pontos inativos).
 
 Regras:
-- Carta: fundo `soft`, emoji em disco `paper`, nome em `deep` da mesma família. Hover: `mid` a 40%.
+- Carta: bloco inteiro na cor `mid`, moldura interna fina em `paper` a 60% (lembra carta de baralho), emoji grande, nome em `ink`. Hover: cor de marca. O estilo "carta" é decisão do Vini e não muda.
 - Botão primário (voltar, anterior, próximo): `blue-deep` com texto `paper`. Hover: `nm-blue`.
 - Botão secundário (som desligado, tela cheia): `mist`, texto `ink` a 70%.
 - Som ligado: `green-soft` com ícone `green-deep`.
