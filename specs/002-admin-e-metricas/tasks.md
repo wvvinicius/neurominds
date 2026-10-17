@@ -30,5 +30,5 @@
 - [x] T015 Lint, tipos e build de produção limpos
 - [x] T016 `.env.example`, `data/` no gitignore, wiki e constituição atualizadas
 - [x] T017a Blob store `neurominds-videos` criado e ligado ao projeto; `ADMIN_PASSWORD` definida em produção e preview
-- [ ] T017b Turso: aceitar os termos da integração no painel da Vercel e instalar (`vercel integration add turso`); depois `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN` entram no projeto
+- [x] T017b Turso instalado pela integração da Vercel (banco `database-aquamarine-car`); variáveis no projeto; produção republicada
 - [ ] T018 Teste da equipe: criar uma ação e subir um vídeo em produção

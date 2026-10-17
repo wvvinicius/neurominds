@@ -62,6 +62,8 @@ Versões: Next.js 16, React 19, Tailwind 4 (tokens via `@theme` no CSS, sem `tai
 - **Produção:** https://neurominds.vercel.app
 - Projeto Vercel `neurominds`, time `neurominds` (hobby), Root Directory `app`, Node 24.
 - Repositório: https://github.com/wvvinicius/neurominds (branch `main`).
+- Banco: Turso via integração da Vercel (`database-aquamarine-car`). Vídeos enviados: Blob store `neurominds-videos`. Variáveis já no projeto, nos três ambientes.
+- Admin: https://neurominds.vercel.app/admin (senha em `ADMIN_PASSWORD`, no painel da Vercel).
 - Deploy manual a partir da raiz do repo: `npx vercel deploy --prod --scope neurominds`.
 
 ## Subir do zero

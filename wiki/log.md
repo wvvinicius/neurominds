@@ -2,6 +2,10 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-16 (noite, 9)
+- **Turso e Blob ligados em produção.** Banco e vídeos enviados agora persistem. A faixa de "banco temporário" sumiu do admin. Seed rodou na primeira visita.
+- A integração instalou arquivos de referência do Turso (`.agents/`, `.claude/skills/turso-cloud/`, `skills-lock.json`). Removidos: não agregam ao produto. Documentação do libSQL está em `app/src/lib/db.ts` e neste wiki.
+
 ## 2026-10-16 (noite, 8) — spec 002
 - **Supabase sai, SQLite entra.** Banco via libSQL: arquivo local em dev, Turso em produção. Motivo: decisão do Vini. Vídeos enviados pelo admin vão para o Vercel Blob, porque função serverless não guarda arquivo.
 - **Gerenciador de conteúdo no ar** (`/admin`): senha única, ações, vídeos com upload, link e pré-visualização, painel de uso. Tudo que muda aparece no site na hora.
