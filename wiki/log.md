@@ -2,6 +2,11 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-16 (noite, 6)
+- **Player vira galeria**: desliza com direção, setas dão a volta, arrastar navega, repetir sempre à mão, fichas numeradas para pular. Motivo: pedido do Vini por experiência lúdica de galeria.
+- **Indicador de espera padrão** (`LoadingDots`): pontos nas cores da logo saltando. Usado na intro, no palco do vídeo e no loading de rota da ação. Regra: toda espera visível para a criança mostra esse indicador.
+- **Primeiros vídeos reais de chutar** (futebol, karatê, natação) em `app/public/videos/chutar/`, cadastrados no seed. Arquivos vêm de `insumos/`.
+
 ## 2026-10-16 (noite, 5)
 - **Som ligado por padrão.** Antes era desligado. Motivo: decisão do Vini. Limite do navegador: antes do primeiro toque, vídeo só toca mudo; a tela mostra "Toque para ouvir" e um toque libera. Constituição e design system atualizados.
 - **Intro: ao terminar oferece Repetir ou Seguir.** Nada avança sozinho.

@@ -31,7 +31,7 @@ A criança vê um vídeo por vez. Ele começa mudo. Ela liga o som se quiser, pa
 1. **Given** a tela da ação, **When** o vídeo começa, **Then** está mudo e há um botão grande de som visível.
 2. **Given** o vídeo mudo, **When** toco no botão de som, **Then** o áudio liga e o ícone muda. Toco de novo e desliga.
 3. **Given** o vídeo 1 de 3, **When** toco em "próximo", **Then** vejo o vídeo 2 e o indicador mostra "2 de 3".
-4. **Given** o vídeo 1 de 3, **When** toco em "anterior", **Then** nada acontece e o botão está visivelmente desabilitado.
+4. **Given** o vídeo 1 de 3, **When** toco em "anterior", **Then** vou para o vídeo 3 (a galeria dá a volta).
 5. **Given** o vídeo terminou, **When** não toco em nada, **Then** ele permanece parado no último quadro com um botão grande de "ver de novo".
 6. **Given** um vídeo com legenda, **When** ele está na tela, **Then** a legenda aparece em uma linha abaixo do vídeo. Sem legenda, nada aparece.
 
@@ -56,7 +56,7 @@ Na Mostra, a equipe coloca o tablet em tela cheia para o público usar sem sair 
 
 ### Functional Requirements
 - **FR-001** (NM-01): Sistema MUST exibir as ações ativas como cartas com emoji, nome e cor, ordenadas por `sort_order`.
-- **FR-002** (NM-02): Sistema MUST exibir um vídeo por vez na tela da ação com botões de próximo e anterior e indicador "n de total".
+- **FR-002** (NM-02, revisado 2026-10-16): Sistema MUST exibir um vídeo por vez na tela da ação como galeria: o vídeo desliza na direção do movimento, setas de anterior e próximo dão a volta no fim, arrastar com o dedo também navega, botão de repetir sempre visível, e uma fileira de fichas numeradas (com legenda) permite pular direto. Enquanto um vídeo prepara, MUST mostrar indicador de espera animado. Arquivo ausente MUST virar um cartão amigável, sem quebrar a navegação.
 - **FR-003** (NM-03): Botão de voltar MUST estar no canto superior esquerdo, com o mesmo tamanho e ícone em todas as telas.
 - **FR-004** (NM-04): Vídeo MUST iniciar mudo. MUST haver botão de som. Sistema MUST NOT avançar para o próximo vídeo automaticamente.
 - **FR-005** (NM-05): Sistema MUST exibir a legenda do vídeo em uma linha quando existir.

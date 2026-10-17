@@ -36,7 +36,7 @@ export default async function ActionPage({ params }: Props) {
 
       <main className="flex flex-1 flex-col items-center px-4 pb-8 sm:px-6">
         {action.videos.length > 0 ? (
-          <ActionPlayer videos={action.videos} />
+          <ActionPlayer videos={action.videos} color={action.color} />
         ) : (
           <div className="flex max-w-md flex-col items-center gap-4 pt-10 text-center motion-safe:animate-pop">
             <span className="text-7xl" aria-hidden="true">

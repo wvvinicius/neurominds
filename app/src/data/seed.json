@@ -8,7 +8,29 @@
       "color": "blue",
       "sortOrder": 1,
       "isActive": true,
-      "videos": []
+      "videos": [
+        {
+          "id": "chutar-futebol",
+          "src": "/videos/chutar/chutar-futebol.mp4",
+          "caption": "Chutar no futebol",
+          "sortOrder": 1,
+          "isActive": true
+        },
+        {
+          "id": "chutar-karate",
+          "src": "/videos/chutar/chutar-karate.mp4",
+          "caption": "Chutar no karatê",
+          "sortOrder": 2,
+          "isActive": true
+        },
+        {
+          "id": "chutar-natacao",
+          "src": "/videos/chutar/chutar-natacao.mp4",
+          "caption": "Chutar na água",
+          "sortOrder": 3,
+          "isActive": true
+        }
+      ]
     },
     {
       "id": "abracar",

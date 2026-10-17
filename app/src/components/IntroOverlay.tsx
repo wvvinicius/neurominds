@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { play, startWithSound, useSoundOn } from "@/lib/sound";
+import { LoadingDots } from "./LoadingDots";
 import { SoundToggle } from "./SoundToggle";
 import { UnmuteHint } from "./UnmuteHint";
 
@@ -169,23 +170,7 @@ export function IntroOverlay() {
           <span className="font-display text-5xl tracking-[0.1em] text-ink/85 motion-safe:animate-slide-up">
             NEUROMINDS
           </span>
-          <div className="flex items-center gap-3" aria-hidden="true">
-            {[
-              "bg-nm-yellow-mid",
-              "bg-nm-blue-mid",
-              "bg-nm-red-mid",
-              "bg-nm-green-mid",
-            ].map((c, i) => (
-              <span
-                key={c}
-                className={`h-5 w-5 rounded-full motion-safe:animate-bounce-dot ${c}`}
-                style={{ animationDelay: `${i * 150}ms` }}
-              />
-            ))}
-          </div>
-          <p className="text-xl font-extrabold text-ink/60" aria-live="polite">
-            O Teo está chegando...
-          </p>
+          <LoadingDots label="O Teo está chegando..." />
         </div>
       )}
 
