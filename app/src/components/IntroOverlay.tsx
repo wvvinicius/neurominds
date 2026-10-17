@@ -26,6 +26,7 @@ const seenOnServer = () => false;
 export function IntroOverlay() {
   const seen = useSyncExternalStore(subscribe, seenOnClient, seenOnServer);
   const [ready, setReady] = useState(false);
+  const [ended, setEnded] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const [gone, setGone] = useState(false);
   const soundOn = useSoundOn();
@@ -54,6 +55,15 @@ export function IntroOverlay() {
     finish();
   };
 
+  const replay = () => {
+    play("pop");
+    setEnded(false);
+    if (ref.current) {
+      ref.current.currentTime = 0;
+      ref.current.play().catch(() => {});
+    }
+  };
+
   return (
     <div
       role="dialog"
@@ -74,10 +84,61 @@ export function IntroOverlay() {
           playsInline
           preload="auto"
           onCanPlay={() => setReady(true)}
-          onEnded={finish}
+          onEnded={() => {
+            setEnded(true);
+            play("done");
+          }}
           onError={finish}
           className={`aspect-video w-full rounded-2xl bg-ink ${ready ? "motion-safe:animate-pop" : ""}`}
         />
+
+        {/* Terminou: repetir ou seguir */}
+        {ended && (
+          <div className="absolute inset-4 flex flex-col items-center justify-center gap-5 rounded-2xl bg-ink/55 motion-safe:animate-pop sm:flex-row sm:gap-8">
+            <button
+              type="button"
+              onClick={replay}
+              className="flex h-20 min-w-48 items-center justify-center gap-3 rounded-full bg-paper px-8 text-2xl font-extrabold text-ink transition-[background-color,transform] hover:bg-mist motion-safe:active:scale-90"
+            >
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 12a9 9 0 1 0 3-6.7" />
+                <path d="M3 4v5h5" />
+              </svg>
+              Repetir
+            </button>
+            <button
+              type="button"
+              onClick={skip}
+              className="flex h-20 min-w-48 items-center justify-center gap-3 rounded-full bg-nm-green-deep px-8 text-2xl font-extrabold text-paper transition-[background-color,transform] hover:bg-nm-green motion-safe:active:scale-90"
+            >
+              Seguir
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14" />
+                <path d="M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Tela de carregamento animada */}
@@ -96,7 +157,12 @@ export function IntroOverlay() {
             NEUROMINDS
           </span>
           <div className="flex items-center gap-3" aria-hidden="true">
-            {["bg-nm-yellow-mid", "bg-nm-blue-mid", "bg-nm-red-mid", "bg-nm-green-mid"].map((c, i) => (
+            {[
+              "bg-nm-yellow-mid",
+              "bg-nm-blue-mid",
+              "bg-nm-red-mid",
+              "bg-nm-green-mid",
+            ].map((c, i) => (
               <span
                 key={c}
                 className={`h-5 w-5 rounded-full motion-safe:animate-bounce-dot ${c}`}
@@ -110,26 +176,28 @@ export function IntroOverlay() {
         </div>
       )}
 
-      {/* Controles: som e pular, sempre visíveis */}
+      {/* Controles: som e pular. "Pular" some quando o vídeo termina. */}
       <div className="absolute bottom-6 right-6 flex items-center gap-3">
         {ready && <SoundToggle />}
-        <button
-          type="button"
-          onClick={skip}
-          className="flex h-14 items-center justify-center gap-2 rounded-full bg-nm-blue-deep px-6 text-lg font-extrabold text-paper transition-[background-color,transform] hover:bg-nm-blue motion-safe:active:scale-90"
-        >
-          Pular
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
+        {!ended && (
+          <button
+            type="button"
+            onClick={skip}
+            className="flex h-14 items-center justify-center gap-2 rounded-full bg-nm-blue-deep px-6 text-lg font-extrabold text-paper transition-[background-color,transform] hover:bg-nm-blue motion-safe:active:scale-90"
           >
-            <path d="M5 4l10 8-10 8z" />
-            <rect x="17" y="4" width="3" height="16" rx="1" />
-          </svg>
-        </button>
+            Pular
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M5 4l10 8-10 8z" />
+              <rect x="17" y="4" width="3" height="16" rx="1" />
+            </svg>
+          </button>
+        )}
       </div>
     </div>
   );
