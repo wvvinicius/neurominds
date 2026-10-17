@@ -26,7 +26,7 @@ const chipOn: Record<ActionColor, string> = {
 };
 
 const arrowBtn =
-  "flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-nm-blue-deep text-paper transition-[background-color,transform] hover:bg-nm-blue motion-safe:active:scale-90 sm:h-20 sm:w-20";
+  "flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-nm-blue-deep text-paper transition-[background-color,transform] hover:bg-nm-blue motion-safe:active:scale-90";
 
 const SWIPE_PX = 60;
 
@@ -48,7 +48,7 @@ export function ActionPlayer({ videos, color, onPlay, onEnded, onChange }: Props
 
   const go = (d: Dir) => {
     const next = d === "next" ? (index + 1) % total : (index - 1 + total) % total;
-    play("tick");
+    play(d);
     setDir(d);
     setIndex(next);
     setTurn((n) => n + 1);
@@ -57,8 +57,9 @@ export function ActionPlayer({ videos, color, onPlay, onEnded, onChange }: Props
 
   const jump = (i: number) => {
     if (i === index) return stageRef.current?.replay();
-    play("tick");
-    setDir(i > index ? "next" : "prev");
+    const d: Dir = i > index ? "next" : "prev";
+    play(d);
+    setDir(d);
     setIndex(i);
     setTurn((n) => n + 1);
     onChange?.(videos[i], i);
@@ -77,9 +78,9 @@ export function ActionPlayer({ videos, color, onPlay, onEnded, onChange }: Props
   };
 
   return (
-    <div className="flex w-full flex-col items-center gap-5">
-      {/* Palco: seta · vídeo · seta */}
-      <div className="flex w-full max-w-6xl items-center gap-3 sm:gap-5">
+    <div className="flex h-full w-full flex-col items-center gap-3">
+      {/* Palco: seta · vídeo · seta. Ocupa o que sobra; o vídeo cabe na altura. */}
+      <div className="flex min-h-0 w-full flex-1 items-center justify-center gap-3 sm:gap-5">
         <button
           type="button"
           onClick={() => go("prev")}
@@ -91,7 +92,7 @@ export function ActionPlayer({ videos, color, onPlay, onEnded, onChange }: Props
         </button>
 
         <div
-          className="min-w-0 flex-1 touch-pan-y"
+          className="w-[min(100%,72rem,calc((100dvh-21rem)*16/9))] min-w-64 touch-pan-y"
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
           onPointerCancel={() => (swipeStart.current = null)}
@@ -119,17 +120,15 @@ export function ActionPlayer({ videos, color, onPlay, onEnded, onChange }: Props
       </div>
 
       {/* Legenda (NM-05) */}
-      {video.caption && (
-        <p
-          key={`cap-${video.id}-${turn}`}
-          className="text-center text-2xl font-extrabold motion-safe:animate-slide-up sm:text-3xl"
-        >
-          {video.caption}
-        </p>
-      )}
+      <p
+        key={`cap-${video.id}-${turn}`}
+        className="h-8 shrink-0 text-center text-2xl font-extrabold leading-8 motion-safe:animate-slide-up"
+      >
+        {video.caption}
+      </p>
 
       {/* Controles: anterior (só celular) · repetir · som · próximo (só celular) */}
-      <div className="flex items-center gap-4">
+      <div className="flex shrink-0 items-center gap-4">
         <button
           type="button"
           onClick={() => go("prev")}
@@ -162,7 +161,7 @@ export function ActionPlayer({ videos, color, onPlay, onEnded, onChange }: Props
       </div>
 
       {/* Fichas: uma por vídeo, toque pula direto */}
-      <div className="flex max-w-full flex-wrap items-center justify-center gap-2 px-2" role="tablist" aria-label="Vídeos">
+      <div className="flex max-w-full shrink-0 flex-wrap items-center justify-center gap-2 px-2" role="tablist" aria-label="Vídeos">
         {videos.map((v, i) => {
           const on = i === index;
           return (

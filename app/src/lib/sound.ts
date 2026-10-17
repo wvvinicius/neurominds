@@ -102,8 +102,12 @@ const sfx = {
   hover: () => tone(880, 0.05, { type: "triangle", gain: 0.06, slideTo: 1100 }),
   /** Toque em carta: "pop" subindo. */
   pop: () => tone(440, 0.14, { slideTo: 880, gain: 0.2 }),
-  /** Próximo / anterior: tick curto. */
+  /** Voltar, pular: tick curto. */
   tick: () => tone(600, 0.06, { type: "triangle", gain: 0.12 }),
+  /** Avançar na galeria: swoosh subindo. */
+  next: () => tone(380, 0.18, { type: "triangle", gain: 0.14, slideTo: 760 }),
+  /** Voltar na galeria: swoosh descendo. */
+  prev: () => tone(760, 0.18, { type: "triangle", gain: 0.14, slideTo: 380 }),
   /** Som ligado: duas notas subindo. */
   on: () => {
     tone(523, 0.1);

@@ -17,11 +17,11 @@ export default async function ActionPage({ params }: Props) {
   if (!action) notFound();
 
   return (
-    <>
-      <div className="nm-stripe" aria-hidden="true" />
+    <div className="flex h-dvh flex-col overflow-hidden">
+      <div className="nm-stripe shrink-0" aria-hidden="true" />
       <BackButton />
 
-      <header className="flex items-center justify-center px-24 py-5">
+      <header className="flex shrink-0 items-center justify-center px-24 py-3 sm:py-4">
         <h1 className="flex items-center gap-3 font-display text-4xl tracking-wide motion-safe:animate-slide-up sm:text-5xl">
           <span
             className="inline-block motion-safe:animate-wiggle"
@@ -34,7 +34,7 @@ export default async function ActionPage({ params }: Props) {
         </h1>
       </header>
 
-      <main className="flex flex-1 flex-col items-center px-4 pb-8 sm:px-6">
+      <main className="flex min-h-0 flex-1 flex-col items-center px-4 pb-4 sm:px-6">
         {action.videos.length > 0 ? (
           <ActionPlayer videos={action.videos} color={action.color} />
         ) : (
@@ -48,6 +48,6 @@ export default async function ActionPage({ params }: Props) {
           </div>
         )}
       </main>
-    </>
+    </div>
   );
 }
