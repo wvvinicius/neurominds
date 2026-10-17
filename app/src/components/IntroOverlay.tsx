@@ -7,18 +7,16 @@ import { LoadingDots } from "./LoadingDots";
 import { SoundToggle } from "./SoundToggle";
 import { UnmuteHint } from "./UnmuteHint";
 
-const KEY = "nm-intro-seen";
 const VIDEO = "/intro/apresentacao-teo.mp4";
 
-/* Mostrada uma vez por sessão do navegador. No servidor sempre renderiza, para aparecer na hora. */
+/*
+ * Aparece toda vez que o app carrega (abrir, recarregar, nova aba).
+ * Não repete ao voltar de uma carta para a home: a memória vive só em
+ * JavaScript e zera a cada carregamento completo da página.
+ */
+let seenThisLoad = false;
 const subscribe = () => () => {};
-const seenOnClient = () => {
-  try {
-    return sessionStorage.getItem(KEY) === "1";
-  } catch {
-    return false;
-  }
-};
+const seenOnClient = () => seenThisLoad;
 const seenOnServer = () => false;
 
 /**
@@ -43,11 +41,7 @@ export function IntroOverlay() {
 
   const finish = () => {
     if (leaving) return;
-    try {
-      sessionStorage.setItem(KEY, "1");
-    } catch {
-      /* sem storage: a intro aparece de novo no próximo carregamento */
-    }
+    seenThisLoad = true;
     setLeaving(true);
     // Timer em vez de onAnimationEnd: com reduced-motion a animação não roda.
     setTimeout(() => setGone(true), 420);
