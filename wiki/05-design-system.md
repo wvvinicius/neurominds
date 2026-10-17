@@ -3,21 +3,36 @@
 Fonte: logo `insumos/NeuroMinds.pdf` (Canva, vetorial). Arco-íris de quatro faixas com a silhueta de uma mão aberta e o wordmark NEUROMINDS em Bebas Neue. Cores extraídas do vetor, sem aproximação.
 
 ## Cores
-| Token | Hex | Origem | Uso |
+
+Duas camadas. As cores puras da logo são **marca**: aparecem na logo e em detalhes pequenos. A **interface** usa tons derivados, flat, sem sombra e sem gradiente. Decisão de 16/10: as cores puras em área grande ficavam vivas demais.
+
+### Marca (extraídas do vetor da logo)
+| Token | Hex | Origem |
+|---|---|---|
+| `nm-yellow` | `#F8E600` | faixa externa |
+| `nm-blue` | `#009ADA` | segunda faixa |
+| `nm-red` | `#FC0000` | terceira faixa |
+| `nm-green` | `#45A102` | faixa interna |
+
+### Interface
+| Família | soft (fundos) | mid (faixa, detalhes) | deep (botões, texto colorido) |
 |---|---|---|---|
-| `yellow` | `#F8E600` | faixa externa | Destaque, fundo de carta, "sucesso" lúdico |
-| `blue` | `#009ADA` | segunda faixa | Cor primária de interface: botões, links, foco |
-| `red` | `#FC0000` | terceira faixa | Fundo de carta, acento. Nunca para erro em tela da criança |
-| `green` | `#45A102` | faixa interna | Fundo de carta, confirmação no admin |
-| `ink` | `#000000` | mão e wordmark | Texto principal |
-| `paper` | `#FFFFFF` | fundo da logo | Fundo de todas as telas |
+| amarelo | `#FFF4B8` | `#F0D64A` | `#8A7A00` |
+| azul | `#D8EDF9` | `#58B5E6` | `#1B7FBD` |
+| vermelho | `#FFDCD9` | `#F0776F` | `#C2362D` |
+| verde | `#DFF2D2` | `#7EC25F` | `#2F7A05` |
 
-Derivadas (gerar no Tailwind com opacidade, não criar novos hex):
-- Fundo de carta: cor a 100%. Texto da carta: `paper` com sombra leve, ou `ink` sobre amarelo.
-- Fundo suave de seção: cor a 10% sobre `paper`.
-- Estado pressionado: cor a 85%.
+Neutros: `ink #1A1A1A` (texto), `paper #FFFFFF` (fundo de tela), `mist #F3F3F0` (botão secundário), `fog #E4E4DF` (hover do secundário, pontos inativos).
 
-Cada ação recebe uma das quatro cores no cadastro. A grade alterna as cores para formar o "arco-íris" da logo.
+Regras:
+- Carta: fundo `soft`, emoji em disco `paper`, nome em `deep` da mesma família. Hover: `mid` a 40%.
+- Botão primário (voltar, anterior, próximo): `blue-deep` com texto `paper`. Hover: `nm-blue`.
+- Botão secundário (som desligado, tela cheia): `mist`, texto `ink` a 70%.
+- Som ligado: `green-soft` com ícone `green-deep`.
+- Sem sombra em nada. Sem borda em cartas. Raio padrão `rounded-2xl`, botões redondos.
+- Faixa do arco-íris: 5 px, tons `mid`.
+
+Cada ação recebe uma das quatro famílias no cadastro. A grade alterna as famílias para lembrar o arco-íris da logo.
 
 ## Tipografia
 - **Títulos e wordmark:** Bebas Neue (Google Fonts). Só em caixa alta, só em títulos curtos. Não usar em texto corrido nem na tela da criança além do nome da ação.
@@ -27,7 +42,7 @@ Cada ação recebe uma das quatro cores no cadastro. A grade alterna as cores pa
 - **Cartas, não listas.** Cada ação é uma carta grande, colorida, com emoji enorme e o nome embaixo. Mínimo 140px de lado no tablet.
 - **Uma coisa por vez.** Tela da ação mostra um vídeo só, ocupando o máximo. Próximo e anterior como botões grandes e redondos.
 - **Feedback físico.** Toque na carta: escala 0,96 e sobe de volta. Transições de 150 a 200 ms. Nada que pisque.
-- **Fundo branco sempre.** As cores saturadas são acento. Quatro cores chapadas em tela cheia cansam e sobrecarregam.
+- **Fundo branco sempre.** Cores só nos tons `soft` em área grande. Saturação pura fica na logo.
 - **Logo** no topo da tela pública, pequena, à esquerda. Não repetir o arco-íris como decoração.
 
 ## Animação e som (implementado na spec 001)

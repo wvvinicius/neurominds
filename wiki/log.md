@@ -2,6 +2,10 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-16 (noite, 3)
+- **Paleta de interface em duas camadas**: marca (cores puras da logo, só na logo e detalhes) e interface (soft, mid, deep derivados, flat, sem sombra). Motivo: Vini achou as cores puras vivas demais em área grande. Ver `05-design-system.md`.
+- **Repositório git criado e publicado** em github.com/wvvinicius/neurominds. Transcrição da reunião fica fora do git (nomes de alunas). Deploy na Vercel com Root Directory `app`.
+
 ## 2026-10-16 (noite, 2)
 - **Personagem fixo nos vídeos: Teo**, menino negro, engraçado, cabelo black power, roupa nas cores da logo. Nome provisório. Motivo: identidade e reconhecimento pela criança entre vídeos.
 - **Vídeos são gerados por IA, não animados por código.** Um gerador em código foi tentado e descartado no mesmo dia. Motivo: decisão do Vini, o produto precisa de vídeo de verdade.

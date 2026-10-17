@@ -14,7 +14,7 @@ type Props = {
 };
 
 const btn =
-  "flex h-16 w-16 items-center justify-center rounded-full shadow-md transition-transform motion-safe:hover:scale-105 motion-safe:active:scale-90 disabled:opacity-30 disabled:shadow-none disabled:hover:scale-100";
+  "flex h-16 w-16 items-center justify-center rounded-full bg-nm-blue-deep text-paper transition-[background-color,transform] hover:bg-nm-blue motion-safe:active:scale-90 disabled:bg-mist disabled:text-ink/30";
 
 /**
  * Um vídeo por vez. Começa mudo. Nunca avança sozinho (FR-004).
@@ -66,7 +66,7 @@ export function ActionPlayer({ videos, onPlay, onEnded, onChange }: Props) {
           onPointerEnter={index > 0 ? onHover : undefined}
           disabled={index === 0}
           aria-label="Vídeo anterior"
-          className={`${btn} bg-nm-blue text-paper`}
+          className={btn}
         >
           <IconChevron dir="left" />
         </button>
@@ -79,7 +79,7 @@ export function ActionPlayer({ videos, onPlay, onEnded, onChange }: Props) {
           onPointerEnter={index < total - 1 ? onHover : undefined}
           disabled={index === total - 1}
           aria-label="Próximo vídeo"
-          className={`${btn} bg-nm-blue text-paper`}
+          className={btn}
         >
           <IconChevron dir="right" />
         </button>
@@ -94,7 +94,7 @@ export function ActionPlayer({ videos, onPlay, onEnded, onChange }: Props) {
           {videos.map((v, i) => (
             <span
               key={v.id}
-              className={`h-3 w-3 rounded-full transition-[background-color,transform] duration-200 ${i === index ? "scale-125 bg-nm-blue" : "bg-ink/15"}`}
+              className={`h-3 w-3 rounded-full transition-[background-color,transform] duration-200 ${i === index ? "scale-125 bg-nm-blue-deep" : "bg-fog"}`}
             />
           ))}
         </span>
@@ -137,7 +137,7 @@ function VideoStage({ video, muted, onPlay, onEnded }: StageProps) {
   };
 
   return (
-    <div className="relative w-full max-w-4xl overflow-hidden rounded-3xl bg-ink shadow-lg motion-safe:animate-pop">
+    <div className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-ink motion-safe:animate-pop">
       <video
         ref={ref}
         src={video.src}
@@ -178,7 +178,7 @@ function VideoStage({ video, muted, onPlay, onEnded }: StageProps) {
           className="absolute inset-0 flex items-center justify-center bg-ink/30"
         >
           <span
-            className={`flex h-24 w-24 items-center justify-center rounded-full shadow-lg motion-safe:animate-pop ${ended ? "bg-nm-yellow text-ink" : "bg-paper text-ink"}`}
+            className={`flex h-24 w-24 items-center justify-center rounded-full motion-safe:animate-pop ${ended ? "bg-nm-yellow-soft text-nm-yellow-deep" : "bg-paper text-ink"}`}
           >
             <span className={ended ? "motion-safe:animate-pulse-soft" : ""}>
               {ended ? <IconReplay /> : <IconPlay />}

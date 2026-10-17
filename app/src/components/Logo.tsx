@@ -12,7 +12,7 @@ export function Logo() {
         unoptimized
         className="h-10 w-auto sm:h-12"
       />
-      <span className="font-display text-3xl tracking-[0.12em] leading-none sm:text-4xl">
+      <span className="font-display text-3xl leading-none tracking-[0.1em] text-ink/85 sm:text-4xl">
         NEUROMINDS
       </span>
     </div>

@@ -30,7 +30,7 @@ export function FullscreenButton() {
     <button
       type="button"
       onClick={toggle}
-      className="flex h-14 min-w-14 items-center justify-center gap-2 rounded-full border-2 border-ink/15 px-4 text-base font-extrabold text-ink/70 transition-transform motion-safe:active:scale-95"
+      className="flex h-14 min-w-14 items-center justify-center gap-2 rounded-full bg-mist px-4 text-base font-extrabold text-ink/70 transition-[background-color,transform] hover:bg-fog motion-safe:active:scale-90"
     >
       <svg
         width="22"

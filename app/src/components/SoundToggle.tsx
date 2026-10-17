@@ -12,18 +12,14 @@ export function SoundToggle({ variant = "pill" }: Props) {
   const on = useSoundOn();
 
   const base =
-    "flex items-center justify-center gap-2 transition-transform motion-safe:active:scale-90 motion-safe:hover:scale-105";
+    "flex items-center justify-center gap-2 transition-[background-color,transform] motion-safe:active:scale-90";
   const shape =
     variant === "round"
-      ? "h-16 w-16 rounded-full shadow-md"
-      : "h-14 min-w-14 rounded-full border-2 px-4 text-base font-extrabold";
+      ? "h-16 w-16 rounded-full"
+      : "h-14 min-w-14 rounded-full px-4 text-base font-extrabold";
   const color = on
-    ? variant === "round"
-      ? "bg-nm-green text-paper"
-      : "border-nm-green bg-nm-green/10 text-nm-green"
-    : variant === "round"
-      ? "border-2 border-ink/15 bg-paper text-ink"
-      : "border-ink/15 text-ink/70";
+    ? "bg-nm-green-soft text-nm-green-deep hover:bg-nm-green-mid/40"
+    : "bg-mist text-ink/70 hover:bg-fog";
 
   return (
     <button
@@ -35,8 +31,8 @@ export function SoundToggle({ variant = "pill" }: Props) {
       className={`${base} ${shape} ${color}`}
     >
       <svg
-        width={variant === "round" ? 32 : 24}
-        height={variant === "round" ? 32 : 24}
+        width={variant === "round" ? 30 : 22}
+        height={variant === "round" ? 30 : 22}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
