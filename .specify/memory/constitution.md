@@ -20,7 +20,7 @@ Fundo branco, cores da logo como acento, Bebas Neue em títulos curtos, Nunito n
 Nunca guardar nome real, diagnóstico, idade, foto ou voz de criança. Uso identificado só por apelido, dentro da conta do profissional. Métricas públicas são anônimas. Ver `wiki/07-dados-e-lgpd.md`.
 
 ## Stack travada
-Next.js (App Router) + TypeScript + Tailwind CSS. Supabase para Postgres, Storage e Auth (Fase 2). Resend para e-mail (Fase 2). Vercel para hospedagem. Trocar qualquer item exige registro em `wiki/log.md` com motivo.
+Next.js (App Router) + TypeScript + Tailwind CSS. SQLite via libSQL (arquivo em dev, Turso em produção). Vercel Blob para vídeos enviados pelo admin. Senha única para o admin na Fase 1. Resend para e-mail (Fase 2). Vercel para hospedagem. Trocar qualquer item exige registro em `wiki/log.md` com motivo. (Emenda 2026-10-16: Supabase substituído por SQLite, decisão do Vini.)
 
 ## Workflow
 - Catálogo de funcionalidades com ID em `wiki/10-funcionalidades.md`. Cada spec referencia os IDs `NM-xx` que cobre.
@@ -32,4 +32,4 @@ Next.js (App Router) + TypeScript + Tailwind CSS. Supabase para Postgres, Storag
 ## Governance
 Esta constituição prevalece sobre qualquer prática não documentada. Emendas exigem atualização da wiki correspondente e entrada no `wiki/log.md`. Complexidade adicional precisa de justificativa escrita no `plan.md` da feature.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-16 | **Last Amended**: 2026-10-16
+**Version**: 1.1.0 | **Ratified**: 2026-10-16 | **Last Amended**: 2026-10-16 (som padrão, stack SQLite)

@@ -1,7 +1,10 @@
 import { notFound } from "next/navigation";
 import { ActionPlayer } from "@/components/ActionPlayer";
 import { BackButton } from "@/components/BackButton";
+import { Track } from "@/components/Track";
 import { getActionBySlug } from "@/lib/data";
+
+export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,6 +21,7 @@ export default async function ActionPage({ params }: Props) {
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden">
+      <Track type="open_action" actionId={action.id} />
       <div className="nm-stripe shrink-0" aria-hidden="true" />
       <BackButton />
 
@@ -36,7 +40,7 @@ export default async function ActionPage({ params }: Props) {
 
       <main className="flex min-h-0 flex-1 flex-col items-center px-4 pb-4 sm:px-6">
         {action.videos.length > 0 ? (
-          <ActionPlayer videos={action.videos} color={action.color} />
+          <ActionPlayer videos={action.videos} color={action.color} actionId={action.id} />
         ) : (
           <div className="flex max-w-md flex-col items-center gap-4 pt-10 text-center motion-safe:animate-pop">
             <span className="text-7xl" aria-hidden="true">

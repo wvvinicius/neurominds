@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { ActionColor, Video } from "@/lib/data";
+import type { ActionColor, Video } from "@/lib/types";
 import { onHover, play, startWithSound, useSoundOn } from "@/lib/sound";
+import { track } from "@/lib/track";
 import { LoadingDots } from "./LoadingDots";
 import { SoundToggle } from "./SoundToggle";
 import { UnmuteHint } from "./UnmuteHint";
@@ -10,7 +11,8 @@ import { UnmuteHint } from "./UnmuteHint";
 type Props = {
   videos: Video[];
   color: ActionColor;
-  /** Pontos de extensão para a spec de métricas (NM-17). Sem uso por enquanto. */
+  /** Para os eventos anônimos (NM-17). */
+  actionId: string;
   onPlay?: (video: Video) => void;
   onEnded?: (video: Video) => void;
   onChange?: (video: Video, index: number) => void;
@@ -35,7 +37,7 @@ const SWIPE_PX = 60;
  * movimento. Setas dão a volta no fim. Arrastar com o dedo também navega.
  * Nunca avança sozinho (FR-004).
  */
-export function ActionPlayer({ videos, color, onPlay, onEnded, onChange }: Props) {
+export function ActionPlayer({ videos, color, actionId, onPlay, onEnded, onChange }: Props) {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState<Dir>("next");
   const [turn, setTurn] = useState(0); // muda a cada navegação, para reanimar mesmo índice
@@ -101,6 +103,7 @@ export function ActionPlayer({ videos, color, onPlay, onEnded, onChange }: Props
             key={`${video.id}-${turn}`}
             ref={stageRef}
             video={video}
+            actionId={actionId}
             muted={!soundOn}
             enter={dir}
             onPlay={onPlay}
@@ -198,6 +201,7 @@ export function ActionPlayer({ videos, color, onPlay, onEnded, onChange }: Props
 
 type StageProps = {
   video: Video;
+  actionId: string;
   muted: boolean;
   enter: Dir;
   ref: React.Ref<{ replay: () => void }>;
@@ -205,7 +209,7 @@ type StageProps = {
   onEnded?: (video: Video) => void;
 };
 
-function VideoStage({ video, muted, enter, ref, onPlay, onEnded }: StageProps) {
+function VideoStage({ video, actionId, muted, enter, ref, onPlay, onEnded }: StageProps) {
   const [paused, setPaused] = useState(false);
   const [ended, setEnded] = useState(false);
   const [missing, setMissing] = useState(false);
@@ -213,6 +217,9 @@ function VideoStage({ video, muted, enter, ref, onPlay, onEnded }: StageProps) {
   const [loading, setLoading] = useState(true);
   const el = useRef<HTMLVideoElement>(null);
   const started = useRef(false);
+  // Métricas: um "iniciou" por exibição, e o tempo até terminar.
+  const playTracked = useRef(false);
+  const startedAt = useRef(0);
 
   // React não sincroniza a propriedade `muted` de forma confiável; fazemos à mão.
   useEffect(() => {
@@ -273,12 +280,19 @@ function VideoStage({ video, muted, enter, ref, onPlay, onEnded }: StageProps) {
         onPlay={() => {
           setPaused(false);
           setEnded(false);
+          if (!playTracked.current) {
+            playTracked.current = true;
+            startedAt.current = Date.now();
+            track("play_video", { actionId, videoId: video.id });
+          }
           onPlay?.(video);
         }}
         onPause={() => setPaused(true)}
         onEnded={() => {
           setEnded(true);
           play("done");
+          track("finish_video", { actionId, videoId: video.id, durationMs: Date.now() - startedAt.current });
+          playTracked.current = false; // "ver de novo" conta como nova exibição
           onEnded?.(video);
         }}
         onWaiting={() => setLoading(true)}

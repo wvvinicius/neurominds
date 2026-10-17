@@ -2,6 +2,13 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-16 (noite, 8) — spec 002
+- **Supabase sai, SQLite entra.** Banco via libSQL: arquivo local em dev, Turso em produção. Motivo: decisão do Vini. Vídeos enviados pelo admin vão para o Vercel Blob, porque função serverless não guarda arquivo.
+- **Gerenciador de conteúdo no ar** (`/admin`): senha única, ações, vídeos com upload, link e pré-visualização, painel de uso. Tudo que muda aparece no site na hora.
+- **Eventos anônimos ligados**: open_home, open_action, play_video, finish_video com duração. Id de sessão rotativo de 24 h, sem dado pessoal.
+- **Logo estava invertida** desde a conversão do PDF (arco virou tigela). Corrigida com espelhamento vertical. Favicon, ícone Apple e manifest gerados da marca.
+- **Fallbacks em produção**: sem Turso o banco é temporário com aviso no admin; sem Blob o upload avisa e o link funciona; sem senha o admin desliga.
+
 ## 2026-10-16 (noite, 7)
 - **Primeiro deploy em produção**: https://neurominds.vercel.app, via CLI a partir da raiz do repo. Root Directory `app` no projeto Vercel.
 - **Intro aparece a cada carregamento do app**, não mais uma vez por sessão. Motivo: pedido do Vini. Voltar de uma carta não repete.

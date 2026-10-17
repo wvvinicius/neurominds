@@ -4,13 +4,18 @@ import { FullscreenButton } from "@/components/FullscreenButton";
 import { IntroOverlay } from "@/components/IntroOverlay";
 import { Logo } from "@/components/Logo";
 import { SoundToggle } from "@/components/SoundToggle";
+import { Track } from "@/components/Track";
 import { getActions } from "@/lib/data";
+
+/* Conteúdo vem do banco e muda pelo admin: nunca pré-renderizar. */
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const actions = await getActions();
 
   return (
     <>
+      <Track type="open_home" />
       <IntroOverlay />
       <div className="nm-stripe" aria-hidden="true" />
       <header className="flex items-center justify-between px-4 py-4 sm:px-6">

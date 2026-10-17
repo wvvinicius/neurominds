@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { Action, ActionColor } from "@/lib/data";
+import type { Action, ActionColor } from "@/lib/types";
 import { onHover, play } from "@/lib/sound";
 
 /* Classes completas para o Tailwind enxergar. Carta inteira na cor média, texto escuro. */

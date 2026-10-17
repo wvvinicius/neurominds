@@ -25,17 +25,17 @@ Atualizado em 2026-10-16, após o primeiro deploy em https://neurominds.vercel.a
 ## Gerenciador de conteúdo (Manu e Nina)
 | ID | Funcionalidade | O que faz | Fase | Esforço | Status |
 |---|---|---|---|---|---|
-| NM-11 | Acesso ao admin | Senha única em variável de ambiente. | 1 | P | a fazer |
-| NM-12 | Cadastro de ações | Criar, editar, ordenar, ativar e desativar (nome, emoji, cor). | 1 | M | a fazer |
-| NM-13 | Upload de vídeos | Subir mp4 para o Storage, ordenar, remover, ativar. Troca o seed pelo banco. | 1 | M | a fazer |
-| NM-14 | Pré-visualização | Ver o vídeo no admin antes de publicar. | 1 | P | a fazer |
-| NM-15 | Painel de uso | Aberturas por ação e vídeos vistos até o fim. | 1 | P | a fazer |
+| NM-11 | Acesso ao admin | Senha única em `ADMIN_PASSWORD`, cookie assinado. | 1 | P | feito |
+| NM-12 | Cadastro de ações | Criar, editar, ordenar, ativar e desativar (nome, emoji, cor). | 1 | M | feito |
+| NM-13 | Upload de vídeos | Enviar para o Vercel Blob ou adicionar por link; legenda, ordem, ativo, excluir. Banco SQLite (libSQL/Turso). | 1 | M | feito |
+| NM-14 | Pré-visualização | Player de cada vídeo no admin. | 1 | P | feito |
+| NM-15 | Painel de uso | Totais, por ação e por vídeo, só contagens anônimas. | 1 | P | feito |
 | NM-16 | Múltiplos editores | Admin vira papel no Supabase Auth. | 2 | M | depois |
 
 ## Métricas e dados
 | ID | Funcionalidade | O que faz | Fase | Esforço | Status |
 |---|---|---|---|---|---|
-| NM-17 | Eventos anônimos | Abriu ação, tocou vídeo, terminou vídeo, com id anônimo. O player já expõe os ganchos. | 1 | P | a fazer |
+| NM-17 | Eventos anônimos | open_home, open_action, play_video, finish_video com duração. Id anônimo de 24 h. | 1 | P | feito |
 | NM-18 | Exportação anonimizada | CSV agregado para a FENIC. | 2 | P | depois |
 
 ## Conteúdo
@@ -65,7 +65,8 @@ Atualizado em 2026-10-16, após o primeiro deploy em https://neurominds.vercel.a
 | NM-29 | Deploy na Vercel | Push na main publica. Produção em https://neurominds.vercel.app. | 1 | P | feito |
 | NM-30 | Domínio próprio | Registrado pelas alunas, apontado para a Vercel. | 1 | P | a fazer (depende do nome) |
 | NM-31 | Backup dos vídeos | Pasta no Drive como arquivo-mestre. | 1 | P | a fazer (processo) |
-| NM-44 | Favicon e ícone de tela inicial | Marca no lugar do ícone padrão do Next. | 1 | P | a fazer |
+| NM-44 | Favicon e ícone de tela inicial | Ícones e manifest gerados da marca. | 1 | P | feito |
+| NM-47 | Turso e Blob em produção | Banco e armazenamento persistentes na Vercel. Sem eles o app avisa e degrada. | 1 | P | a fazer (depende de conta) |
 | NM-45 | Teste no tablet do stand | Retrato e paisagem nas três telas. Ajustes do que aparecer. | 1 | P | a fazer |
 
 ## Backlog

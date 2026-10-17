@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "NeuroMinds",
   description:
     "Cartas de ações com vídeos curtos para crianças com TEA compreenderem o que cada palavra significa.",
+  appleWebApp: { capable: true, title: "NeuroMinds", statusBarStyle: "default" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
