@@ -15,6 +15,7 @@ Catálogo completo com ID. Serve de base para o spec kit: cada funcionalidade ap
 | NM-08 | Modo stand | Tela cheia, sem barra do navegador, sem links externos. Para o tablet da Mostra. | 1 | P | entra |
 | NM-09 | Voz lendo o nome da ação | Ao tocar na carta, o navegador fala "chutar" (Web Speech API). | 1 | P | backlog |
 | NM-10 | Rodapé de transparência | Texto curto: "não coleta dados pessoais, registra só vídeos vistos de forma anônima". | 1 | P | entra |
+| NM-37 | Introdução com o Teo | Ao abrir, tela animada de carregamento e vídeo de apresentação do Teo, com "Pular". Uma vez por sessão. | 1 | P | entra (feito) |
 
 ## Gerenciador de conteúdo (Manu e Nina)
 | ID | Funcionalidade | O que faz | Fase | Esforço | Recomendação |

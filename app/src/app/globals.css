@@ -49,6 +49,27 @@
   --animate-slide-up: nm-slide-up 0.45s var(--ease-bouncy) both;
   --animate-pulse-soft: nm-pulse-soft 1.6s ease-in-out infinite;
   --animate-wave: nm-wave 1s ease-in-out infinite;
+  --animate-bounce-dot: nm-bounce-dot 0.9s ease-in-out infinite;
+  --animate-fade-out: nm-fade-out 0.4s ease-out both;
+}
+
+@keyframes nm-bounce-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes nm-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes nm-pop {

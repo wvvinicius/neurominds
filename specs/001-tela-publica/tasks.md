@@ -45,6 +45,10 @@
 - [x] T023 `SoundToggle.tsx` (pill no header, round no player) substitui o botão de mudo local do player
 - [x] T024 Animações de entrada e toque em `ActionCard`, `BackButton`, `ActionPlayer`, páginas de cartas, ação e 404
 
+## Phase 8: Introdução com o Teo (FR-013)
+- [x] T025 Vídeo `insumos/apresentacao-teo.mp4` copiado para `app/public/intro/`
+- [x] T026 `IntroOverlay.tsx`: tela de carregamento animada, vídeo com pular, uma vez por sessão, incluída em `page.tsx`
+
 ## Dependencies & Execution Order
 - Phase 1 e 2 antes de tudo. T002, T003, T004 em paralelo. T006 a T009 em paralelo após T005.
 - US1 (T010 a T013) entrega valor sozinha e é o MVP.

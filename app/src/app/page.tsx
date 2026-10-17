@@ -1,6 +1,7 @@
 import { ActionCard } from "@/components/ActionCard";
 import { Footer } from "@/components/Footer";
 import { FullscreenButton } from "@/components/FullscreenButton";
+import { IntroOverlay } from "@/components/IntroOverlay";
 import { Logo } from "@/components/Logo";
 import { SoundToggle } from "@/components/SoundToggle";
 import { getActions } from "@/lib/data";
@@ -10,6 +11,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <IntroOverlay />
       <div className="nm-stripe" aria-hidden="true" />
       <header className="flex items-center justify-between px-4 py-4 sm:px-6">
         <div className="motion-safe:animate-slide-left">

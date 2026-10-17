@@ -2,6 +2,9 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-16 (noite, 4)
+- **Introdução com o Teo (NM-37)**: ao abrir o site, tela animada de carregamento e vídeo de apresentação, com "Pular". Aparece uma vez por sessão do navegador, para não repetir a cada volta às cartas. Vídeo em `app/public/intro/`. Motivo: pedido do Vini.
+
 ## 2026-10-16 (noite, 3)
 - **Paleta de interface em duas camadas**: marca (cores puras da logo, só na logo e detalhes) e interface (soft, mid, deep derivados, flat, sem sombra). Motivo: Vini achou as cores puras vivas demais em área grande. Ver `05-design-system.md`.
 - **Repositório git criado e publicado** em github.com/wvvinicius/neurominds. Transcrição da reunião fica fora do git (nomes de alunas). Deploy na Vercel com Root Directory `app`.
