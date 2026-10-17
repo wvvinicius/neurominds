@@ -2,6 +2,11 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-16 (noite, 7)
+- **Primeiro deploy em produção**: https://neurominds.vercel.app, via CLI a partir da raiz do repo. Root Directory `app` no projeto Vercel.
+- **Intro aparece a cada carregamento do app**, não mais uma vez por sessão. Motivo: pedido do Vini. Voltar de uma carta não repete.
+- **Sons distintos para avançar (subindo) e voltar (descendo)** na galeria.
+
 ## 2026-10-16 (noite, 6)
 - **Player vira galeria**: desliza com direção, setas dão a volta, arrastar navega, repetir sempre à mão, fichas numeradas para pular. Motivo: pedido do Vini por experiência lúdica de galeria.
 - **Indicador de espera padrão** (`LoadingDots`): pontos nas cores da logo saltando. Usado na intro, no palco do vídeo e no loading de rota da ação. Regra: toda espera visível para a criança mostra esse indicador.

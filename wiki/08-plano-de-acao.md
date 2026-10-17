@@ -10,7 +10,8 @@ Combinado na reunião de 14/10/2026. Mostra em 20/10/2026 (terça).
 | 16/10 (sex) | Vini | Gerar vídeos-amostra de 2 ações e passar o prompt | pendente |
 | 16/10 (sex) | Alunas | Logo entregue (`insumos/NeuroMinds.pdf`) | feito |
 | 16/10 (sex) | Alunas | Escolher nome do domínio | pendente |
-| 17/10 (sáb) | Vini | Desenvolver Fase 1 e subir na Vercel | pendente |
+| 16/10 (sex) | Vini | Fase 1 no ar em https://neurominds.vercel.app (cartas, galeria, intro do Teo, 3 vídeos de chutar) | feito |
+| 17/10 (sáb) | Vini | Demais ações e vídeos, ajustes do teste no tablet | pendente |
 | 17–19/10 | Manu e Nina | Gerar, conferir e subir os vídeos no `/admin` | pendente |
 | 19/10 (seg) | Todos | Teste no tablet que vai para o stand | pendente |
 | 20/10 (ter) | Escola | Mostra. Vini visita ~10h30 | — |

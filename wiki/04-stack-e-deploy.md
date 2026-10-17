@@ -43,6 +43,12 @@ SUPABASE_SERVICE_ROLE_KEY=      ← só no servidor (admin, upload)
 ADMIN_PASSWORD=
 ```
 
+## Onde está no ar
+- **Produção:** https://neurominds.vercel.app
+- Projeto Vercel `neurominds`, time `neurominds` (hobby), Root Directory `app`, Node 24.
+- Repositório: https://github.com/wvvinicius/neurominds (branch `main`).
+- Deploy manual a partir da raiz do repo: `npx vercel deploy --prod --scope neurominds`.
+
 ## Subir do zero
 1. Criar projeto no Supabase. Rodar `supabase/migrations/*.sql` no SQL Editor. Criar bucket `videos` público.
 2. Importar o repo na Vercel. Colar as variáveis de ambiente.
