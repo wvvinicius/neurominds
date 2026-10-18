@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AboutButton } from "@/components/AboutButton";
 import { Footer } from "@/components/Footer";
 import { FullscreenButton } from "@/components/FullscreenButton";
 import { IntroOverlay } from "@/components/IntroOverlay";
@@ -19,6 +20,7 @@ export default function HomePage() {
           <Logo />
         </div>
         <div className="flex items-center gap-2">
+          <AboutButton />
           <SoundToggle />
           <FullscreenButton />
         </div>

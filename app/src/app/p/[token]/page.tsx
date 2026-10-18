@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { AboutButton } from "@/components/AboutButton";
 import { ActionCard } from "@/components/ActionCard";
 import { BackButton } from "@/components/BackButton";
 import { BoardSession } from "@/components/BoardSession";
@@ -36,6 +37,7 @@ export default async function BoardPage({ params }: Props) {
           <Logo />
         </div>
         <div className="flex items-center gap-2">
+          <AboutButton />
           <SoundToggle />
           <FullscreenButton />
         </div>

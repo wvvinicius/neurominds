@@ -1,3 +1,4 @@
+import { AboutButton } from "@/components/AboutButton";
 import { ActionCard } from "@/components/ActionCard";
 import { BackButton } from "@/components/BackButton";
 import { Footer } from "@/components/Footer";
@@ -24,6 +25,7 @@ export default async function CardsPage() {
           <Logo />
         </div>
         <div className="flex items-center gap-2">
+          <AboutButton />
           <SoundToggle />
           <FullscreenButton />
         </div>
