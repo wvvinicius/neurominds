@@ -1,6 +1,11 @@
 # 06 · Conteúdo: vídeos
 
-Os vídeos são o gargalo do projeto, não o código. Quem gera é a equipe de conteúdo (Manu e Nina). O Vini faz uma amostra de duas ações e passa o prompt. Este doc é o manual.
+## Como os vídeos são feitos hoje (desde 18/10/2026)
+O Vini construiu um **gerador próprio** em `insumos/teo-personagem/`: o Teo é um rig em SVG, cada vídeo é um arquivo `acoes/Vxx.js` que descreve a cena por código, e `render.js` rasteriza os frames e monta o MP4 com e sem som. Regras, plano com os 48 vídeos e manual para criar cenas novas estão lá (`REGRAS-VIDEO.md`, `PLANO-VIDEOS.md`, `acoes/LEIA-ME.md`).
+
+Para colocar no app: `cd app && node scripts/import-teo.mjs --target turso`. O script sobe as versões com som para o Vercel Blob (URLs em `app/scripts/teo-blob-urls.json`), cria ações que faltam e cadastra os vídeos com legenda curta. É idempotente. Vídeo novo = linha nova em `VIDEOS_PLAN` dentro do script.
+
+O resto deste documento é a especificação que vale para qualquer vídeo, gerado por código ou por IA.
 
 ## Especificação técnica
 | Item | Valor |

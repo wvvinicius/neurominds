@@ -1,0 +1,414 @@
+{
+  "personagem": "Teo",
+  "canvas_alinhado": {
+    "largura": 460,
+    "altura": 620,
+    "origem_x": -30,
+    "escala_png": 3
+  },
+  "ordem_camadas": [
+    "perna-esq",
+    "perna-dir",
+    "corpo",
+    "braco-esq",
+    "braco-dir",
+    "cabeca",
+    "bochechas",
+    "olhos-*",
+    "boca-*",
+    "suor"
+  ],
+  "partes": [
+    {
+      "nome": "perna-esq",
+      "segue": null,
+      "pivo_alinhado_px": [
+        202,
+        470
+      ],
+      "pivo_alinhado_png_px": [
+        606,
+        1410
+      ],
+      "pivo_alinhado_pct": [
+        43.91,
+        75.81
+      ],
+      "canvas_pivo_png_px": 840
+    },
+    {
+      "nome": "perna-dir",
+      "segue": null,
+      "pivo_alinhado_px": [
+        258,
+        470
+      ],
+      "pivo_alinhado_png_px": [
+        774,
+        1410
+      ],
+      "pivo_alinhado_pct": [
+        56.09,
+        75.81
+      ],
+      "canvas_pivo_png_px": 840
+    },
+    {
+      "nome": "corpo",
+      "segue": null,
+      "pivo_alinhado_px": [
+        230,
+        494
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        1482
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        79.68
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "braco-esq",
+      "segue": null,
+      "pivo_alinhado_px": [
+        172,
+        318
+      ],
+      "pivo_alinhado_png_px": [
+        516,
+        954
+      ],
+      "pivo_alinhado_pct": [
+        37.39,
+        51.29
+      ],
+      "canvas_pivo_png_px": 780
+    },
+    {
+      "nome": "braco-dir",
+      "segue": null,
+      "pivo_alinhado_px": [
+        288,
+        318
+      ],
+      "pivo_alinhado_png_px": [
+        864,
+        954
+      ],
+      "pivo_alinhado_pct": [
+        62.61,
+        51.29
+      ],
+      "canvas_pivo_png_px": 780
+    },
+    {
+      "nome": "cabeca",
+      "segue": null,
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "bochechas",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "suor",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "olhos-aberto",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "olhos-piscando",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "olhos-risada",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "olhos-surpreso",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "olhos-confiante",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "olhos-ops",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "olhos-pensando",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "boca-fechada",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "boca-meio-aberta",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "boca-sorriso",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "boca-gargalhada",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "boca-o",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "boca-confiante",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "boca-dentes",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    },
+    {
+      "nome": "boca-reta",
+      "segue": "cabeca",
+      "pivo_alinhado_px": [
+        230,
+        262
+      ],
+      "pivo_alinhado_png_px": [
+        690,
+        786
+      ],
+      "pivo_alinhado_pct": [
+        50,
+        42.26
+      ],
+      "canvas_pivo_png_px": 1500
+    }
+  ]
+}

@@ -43,7 +43,7 @@ Atualizado em 2026-10-18, após a spec 003 (área do profissional).
 |---|---|---|---|---|---|
 | NM-41 | Personagem Teo e prompts | Bloco de personagem, regras e prompts por cena para gerar os vídeos por IA. | 1 | P | feito |
 | NM-42 | Vídeos de chutar | Futebol, karatê e natação em `public/videos/chutar/`, cadastrados no mock. | 1 | — | feito |
-| NM-43 | Vídeos das outras 7 ações | Abraçar, pular, correr, comer, dormir, lavar, brincar. Gerados pela equipe com os prompts. | 1 | — | a fazer |
+| NM-43 | Biblioteca de ações do Teo | 48 vídeos em 30 ações, gerados pelo rig em `insumos/teo-personagem/`, no Blob e no banco. Abraçar, pular, dormir, lavar e brincar ficaram inativas por não terem vídeo. | 1 | — | feito |
 
 ## Profissional e aluno — Fase 2
 | ID | Funcionalidade | O que faz | Fase | Esforço | Status |

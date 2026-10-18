@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 12 500 500" width="500" height="500"><g transform="translate(200 192)"><clipPath id="b_garg"><path d="M -36 38 Q 0 46 36 38 Q 32 88 0 88 Q -32 88 -36 38 Z"/></clipPath>
+    <path d="M -36 38 Q 0 46 36 38 Q 32 88 0 88 Q -32 88 -36 38 Z" fill="#7A1E2B"/>
+    <g clip-path="url(#b_garg)">
+      <path d="M -40 30 L 40 30 L 40 50 Q 0 57 -40 50 Z" fill="#FFFFFF"/>
+      <ellipse cx="0" cy="86" rx="20" ry="11" fill="#E8607A"/>
+    </g>
+    <path d="M -36 38 Q 0 46 36 38 Q 32 88 0 88 Q -32 88 -36 38 Z" fill="none" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/></g></svg>

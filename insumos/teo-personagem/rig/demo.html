@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teo — Rig de Animação</title>
+<style>
+  :root{--bg:#FFF8E7;--ink:#1A0F0A;--muted:#6b5b50}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,Segoe UI,sans-serif}
+  main{max-width:900px;margin:0 auto;padding:28px 16px 60px}
+  h1{margin:0;font-size:36px} p{color:var(--muted);margin:4px 0 18px}
+  .wrap{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  .stage{width:min(100%,380px);aspect-ratio:460/620;position:relative;background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:5px 5px 0 var(--ink);overflow:hidden}
+  .teo{position:absolute;inset:0}
+  .L{position:absolute;inset:0;width:100%;height:100%}
+  .ctrl{flex:1;min-width:240px}
+  .ctrl h3{margin:10px 0 6px;font-size:15px}
+  button{font:inherit;font-size:14px;padding:6px 12px;margin:0 6px 6px 0;border:2px solid var(--ink);border-radius:10px;background:#fff;cursor:pointer}
+  button.on{background:#FFC93C}
+  .hide{display:none}
+  /* animações */
+  @keyframes bob{50%{transform:translateY(-8px)}}
+  @keyframes wave{0%,100%{transform:rotate(-125deg)}50%{transform:rotate(-155deg)}}
+  @keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+  @keyframes swayInv{0%,100%{transform:rotate(4deg)}50%{transform:rotate(-4deg)}}
+  @keyframes tilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+  @keyframes legA{0%,100%{transform:rotate(-18deg)}50%{transform:rotate(18deg)}}
+  @keyframes legB{0%,100%{transform:rotate(18deg)}50%{transform:rotate(-18deg)}}
+  @keyframes armA{0%,100%{transform:rotate(25deg)}50%{transform:rotate(-25deg)}}
+  @keyframes armB{0%,100%{transform:rotate(-25deg)}50%{transform:rotate(25deg)}}
+  @keyframes hero{0%,40%{transform:rotate(0)}60%,100%{transform:rotate(-165deg)}}
+  .a-parado .teo{animation:bob 2.4s ease-in-out infinite}
+  .a-parado .braco-esq{animation:swayInv 2.4s ease-in-out infinite}
+  .a-parado .braco-dir{animation:sway 2.4s ease-in-out infinite}
+  .a-acenar .braco-dir{animation:wave .5s ease-in-out infinite}
+  .a-acenar .cab{animation:tilt 1s ease-in-out infinite}
+  .a-andar .teo{animation:bob .4s ease-in-out infinite}
+  .a-andar .perna-esq{animation:legA .8s ease-in-out infinite}
+  .a-andar .perna-dir{animation:legB .8s ease-in-out infinite}
+  .a-andar .braco-esq{animation:armA .8s ease-in-out infinite}
+  .a-andar .braco-dir{animation:armB .8s ease-in-out infinite}
+  .a-heroi .braco-dir{animation:hero 1.6s ease-out infinite alternate}
+  .cab{position:absolute;inset:0;transform-origin:50.00% 42.26%}
+</style></head><body><main>
+  <h1>Teo — rig de animação</h1>
+  <p>Cada parte é uma camada alinhada; os giros acontecem no pivô (ombro, quadril, pescoço). É assim que você monta no editor de vídeo.</p>
+  <div class="wrap">
+    <div class="stage a-parado" id="stage"><div class="teo">
+      <svg class="L perna-esq"  viewBox="-30 0 460 620" style="transform-origin:43.91% 75.81%"><path d="M 172 470 L 170 520 L 168 560" fill="none" stroke="#1A0F0A" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 172 470 L 170 520 L 168 560" fill="none" stroke="#6B3F2A" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><path d="M 168.6 548 L 168 560" fill="none" stroke="#1A0F0A" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 168.6 548 L 168 560" fill="none" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(168 564) rotate(0) scale(-1 1)">
+      <path d="M -18 -10 L 12 -10 Q 40 -6 44 16 L -20 16 Z" fill="#E63946" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M -2 -2 L 18 2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+      <path d="M -24 14 L 48 14 Q 50 28 40 28 L -20 28 Q -26 28 -24 14 Z" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/>
+    </g></svg><svg class="L perna-dir"  viewBox="-30 0 460 620" style="transform-origin:56.09% 75.81%"><path d="M 228 470 L 230 520 L 232 560" fill="none" stroke="#1A0F0A" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 228 470 L 230 520 L 232 560" fill="none" stroke="#6B3F2A" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><path d="M 231.4 548 L 232 560" fill="none" stroke="#1A0F0A" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 231.4 548 L 232 560" fill="none" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(232 564) rotate(0) scale(1 1)">
+      <path d="M -18 -10 L 12 -10 Q 40 -6 44 16 L -20 16 Z" fill="#E63946" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M -2 -2 L 18 2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+      <path d="M -24 14 L 48 14 Q 50 28 40 28 L -20 28 Q -26 28 -24 14 Z" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/>
+    </g></svg><svg class="L corpo"  viewBox="-30 0 460 620" style="transform-origin:50.00% 79.68%"><rect x="184" y="250" width="32" height="56" fill="#6B3F2A" stroke="#1A0F0A" stroke-width="6"/>
+  <path d="M 136 416 L 264 416 L 272 494 L 210 494 L 200 462 L 190 494 L 128 494 Z" fill="#2F6BDB" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M 200 420 L 200 460" stroke="#1A0F0A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 142 300 Q 200 288 258 300 Q 272 306 270 330 L 266 426 Q 200 434 134 426 L 130 330 Q 128 306 142 300 Z" fill="#FFC93C" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M 178 298 Q 200 316 222 298" fill="none" stroke="#1A0F0A" stroke-width="6" stroke-linecap="round"/></svg><svg class="L braco-esq"  viewBox="-30 0 460 620" style="transform-origin:37.39% 51.29%"><path d="M 142 318 L 130 368 L 126 418" fill="none" stroke="#1A0F0A" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 142 318 L 130 368 L 126 418" fill="none" stroke="#6B3F2A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/><circle cx="126" cy="418" r="16" fill="#6B3F2A" stroke="#1A0F0A" stroke-width="6"/><g transform="translate(142 318) rotate(103.5)">
+    <path d="M -14 -24 L 34 -21 Q 42 0 34 21 L -14 24 Z" fill="#FFC93C" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/>
+  </g></svg><svg class="L braco-dir"  viewBox="-30 0 460 620" style="transform-origin:62.61% 51.29%"><path d="M 258 318 L 270 368 L 274 418" fill="none" stroke="#1A0F0A" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 258 318 L 270 368 L 274 418" fill="none" stroke="#6B3F2A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/><circle cx="274" cy="418" r="16" fill="#6B3F2A" stroke="#1A0F0A" stroke-width="6"/><g transform="translate(258 318) rotate(76.5)">
+    <path d="M -14 -24 L 34 -21 Q 42 0 34 21 L -14 24 Z" fill="#FFC93C" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/>
+  </g></svg>
+      <div class="cab">
+        <svg class="L cabeca"  viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><circle cx="0.0" cy="-40.0" r="98" fill="#1A0F0A"/><circle cx="0.0" cy="-132.0" r="43" fill="#1A0F0A"/><circle cx="38.9" cy="-123.4" r="43" fill="#1A0F0A"/><circle cx="-38.9" cy="-123.4" r="43" fill="#1A0F0A"/><circle cx="70.5" cy="-99.1" r="43" fill="#1A0F0A"/><circle cx="-70.5" cy="-99.1" r="43" fill="#1A0F0A"/><circle cx="88.9" cy="-63.8" r="43" fill="#1A0F0A"/><circle cx="-88.9" cy="-63.8" r="43" fill="#1A0F0A"/><circle cx="90.6" cy="-24.0" r="43" fill="#1A0F0A"/><circle cx="-90.6" cy="-24.0" r="43" fill="#1A0F0A"/><circle cx="78.0" cy="8.8" r="43" fill="#1A0F0A"/><circle cx="-78.0" cy="8.8" r="43" fill="#1A0F0A"/><circle cx="0.0" cy="-40.0" r="95" fill="#2A1B15"/><circle cx="0.0" cy="-132.0" r="40" fill="#2A1B15"/><circle cx="38.9" cy="-123.4" r="40" fill="#2A1B15"/><circle cx="-38.9" cy="-123.4" r="40" fill="#2A1B15"/><circle cx="70.5" cy="-99.1" r="40" fill="#2A1B15"/><circle cx="-70.5" cy="-99.1" r="40" fill="#2A1B15"/><circle cx="88.9" cy="-63.8" r="40" fill="#2A1B15"/><circle cx="-88.9" cy="-63.8" r="40" fill="#2A1B15"/><circle cx="90.6" cy="-24.0" r="40" fill="#2A1B15"/><circle cx="-90.6" cy="-24.0" r="40" fill="#2A1B15"/><circle cx="78.0" cy="8.8" r="40" fill="#2A1B15"/><circle cx="-78.0" cy="8.8" r="40" fill="#2A1B15"/><path d="M -70 -110 q 10 -12 22 -4" fill="none" stroke="#3D2A21" stroke-width="5" stroke-linecap="round"/><path d="M 40 -140 q 12 -8 22 2" fill="none" stroke="#3D2A21" stroke-width="5" stroke-linecap="round"/><path d="M -20 -150 q 10 -10 22 -2" fill="none" stroke="#3D2A21" stroke-width="5" stroke-linecap="round"/><path d="M 80 -80 q 10 -4 14 8" fill="none" stroke="#3D2A21" stroke-width="5" stroke-linecap="round"/><path d="M -105 -50 q 6 -12 18 -10" fill="none" stroke="#3D2A21" stroke-width="5" stroke-linecap="round"/><path d="M 95 -20 q 8 -2 10 10" fill="none" stroke="#3D2A21" stroke-width="5" stroke-linecap="round"/><path d="M -10 -112 q 8 -8 18 -2" fill="none" stroke="#3D2A21" stroke-width="5" stroke-linecap="round"/><path d="M 50 -100 q 8 -8 18 0" fill="none" stroke="#3D2A21" stroke-width="5" stroke-linecap="round"/><path d="M -60 -150 q 8 -8 18 -4" fill="none" stroke="#3D2A21" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="-70" cy="14" r="17" fill="#6B3F2A" stroke="#1A0F0A" stroke-width="6"/>
+  <circle cx="70" cy="14" r="17" fill="#6B3F2A" stroke="#1A0F0A" stroke-width="6"/>
+  <path d="M -72 8 q 6 4 4 12 M 72 8 q -6 4 -4 12" fill="none" stroke="#4A2A1B" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="0" cy="8" rx="72" ry="80" fill="#6B3F2A" stroke="#1A0F0A" stroke-width="6"/>
+  <path d="M -76 -6 Q -72 -78 0 -82 Q 72 -78 76 -6 Q 58 -50 0 -52 Q -58 -50 -76 -6 Z" fill="#2A1B15"/>
+  <path d="M -74 -8 Q -58 -50 0 -52 Q 58 -50 74 -8" fill="none" stroke="#1A0F0A" stroke-width="5" stroke-linecap="round"/>
+  <path d="M -7 24 Q 0 31 7 24" fill="none" stroke="#4A2A1B" stroke-width="5" stroke-linecap="round"/></g></svg><svg class="L bochechas"  viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><ellipse cx="-50" cy="30" rx="11" ry="7" fill="#8E4630"/><ellipse cx="50" cy="30" rx="11" ry="7" fill="#8E4630"/></g></svg>
+        <svg class="L olhos-aberto" data-olhos="aberto" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><path d="M -44 -40 Q -28 -50 -12 -42" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M 12 -42 Q 28 -50 44 -40" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><ellipse cx="-28" cy="-4" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="-28" cy="-2" r="12" fill="#24150E"/><circle cx="-32.2" cy="-6.800000000000001" r="4.32" fill="#FFFFFF"/><ellipse cx="28" cy="-4" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="28" cy="-2" r="12" fill="#24150E"/><circle cx="23.8" cy="-6.800000000000001" r="4.32" fill="#FFFFFF"/></g></svg><svg class="L olhos-piscando" data-olhos="piscando" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><path d="M -44 -40 Q -28 -50 -12 -42" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M 12 -42 Q 28 -50 44 -40" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M -46 -2 Q -28 10 -10 -2 M 10 -2 Q 28 10 46 -2" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/></g></svg><svg class="L olhos-risada" data-olhos="risada" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><path d="M -44 -44 Q -28 -54 -12 -46" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M 12 -46 Q 28 -54 44 -44" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M -44 0 Q -28 -22 -12 0" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M 12 0 Q 28 -22 44 0" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/></g></svg><svg class="L olhos-surpreso" data-olhos="surpreso" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><path d="M -44 -50 Q -28 -62 -12 -52" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M 12 -52 Q 28 -62 44 -50" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><ellipse cx="-28" cy="-6" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="-28" cy="-6" r="8" fill="#24150E"/><circle cx="-30.8" cy="-9.2" r="2.88" fill="#FFFFFF"/><ellipse cx="28" cy="-6" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="28" cy="-6" r="8" fill="#24150E"/><circle cx="25.2" cy="-9.2" r="2.88" fill="#FFFFFF"/></g></svg><svg class="L olhos-confiante" data-olhos="confiante" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><path d="M -44 -34 Q -28 -40 -12 -34" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M 12 -44 Q 28 -56 44 -46" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><ellipse cx="-28" cy="-4" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="-25" cy="-2" r="12" fill="#24150E"/><circle cx="-29.2" cy="-6.800000000000001" r="4.32" fill="#FFFFFF"/><clipPath id="r_confiantea"><ellipse cx="-28" cy="-4" rx="19" ry="23"/></clipPath><rect x="-53" y="-34" width="50" height="19" fill="#6B3F2A" clip-path="url(#r_confiantea)"/><path d="M -48 -15 L -8 -15" stroke="#1A0F0A" stroke-width="5" stroke-linecap="round"/><ellipse cx="-28" cy="-4" rx="19" ry="23" fill="none" stroke="#1A0F0A" stroke-width="5"/><ellipse cx="28" cy="-4" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="31" cy="-2" r="12" fill="#24150E"/><circle cx="26.8" cy="-6.800000000000001" r="4.32" fill="#FFFFFF"/><clipPath id="r_confianteb"><ellipse cx="28" cy="-4" rx="19" ry="23"/></clipPath><rect x="3" y="-34" width="50" height="14" fill="#6B3F2A" clip-path="url(#r_confianteb)"/><path d="M 8 -20 L 48 -20" stroke="#1A0F0A" stroke-width="5" stroke-linecap="round"/><ellipse cx="28" cy="-4" rx="19" ry="23" fill="none" stroke="#1A0F0A" stroke-width="5"/></g></svg><svg class="L olhos-ops" data-olhos="ops" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><path d="M -44 -46 Q -28 -40 -12 -50" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M 12 -50 Q 28 -40 44 -46" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><ellipse cx="-28" cy="-4" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="-35" cy="-7" r="10" fill="#24150E"/><circle cx="-38.5" cy="-11" r="3.5999999999999996" fill="#FFFFFF"/><ellipse cx="28" cy="-4" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="21" cy="-7" r="10" fill="#24150E"/><circle cx="17.5" cy="-11" r="3.5999999999999996" fill="#FFFFFF"/></g></svg><svg class="L olhos-pensando" data-olhos="pensando" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><path d="M -44 -40 Q -28 -46 -12 -40" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><path d="M 12 -48 Q 28 -58 44 -48" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/><ellipse cx="-28" cy="-4" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="-22" cy="-12" r="10" fill="#24150E"/><circle cx="-25.5" cy="-16" r="3.5999999999999996" fill="#FFFFFF"/><ellipse cx="28" cy="-4" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="34" cy="-12" r="10" fill="#24150E"/><circle cx="30.5" cy="-16" r="3.5999999999999996" fill="#FFFFFF"/></g></svg>
+        <svg class="L boca-fechada" data-boca="fechada" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><path d="M -28 44 Q 0 64 28 44" fill="none" stroke="#1A0F0A" stroke-width="7" stroke-linecap="round"/></g></svg><svg class="L boca-meio-aberta" data-boca="meio-aberta" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><clipPath id="b_meio"><path d="M -36 38 Q 0 46 36 38 Q 32 60 0 60 Q -32 60 -36 38 Z"/></clipPath>
+    <path d="M -36 38 Q 0 46 36 38 Q 32 60 0 60 Q -32 60 -36 38 Z" fill="#7A1E2B"/>
+    <g clip-path="url(#b_meio)">
+      <path d="M -40 30 L 40 30 L 40 50 Q 0 57 -40 50 Z" fill="#FFFFFF"/>
+      <ellipse cx="0" cy="58" rx="20" ry="11" fill="#E8607A"/>
+    </g>
+    <path d="M -36 38 Q 0 46 36 38 Q 32 60 0 60 Q -32 60 -36 38 Z" fill="none" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/></g></svg><svg class="L boca-sorriso" data-boca="sorriso" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><clipPath id="b_sorriso"><path d="M -36 38 Q 0 46 36 38 Q 32 78 0 78 Q -32 78 -36 38 Z"/></clipPath>
+    <path d="M -36 38 Q 0 46 36 38 Q 32 78 0 78 Q -32 78 -36 38 Z" fill="#7A1E2B"/>
+    <g clip-path="url(#b_sorriso)">
+      <path d="M -40 30 L 40 30 L 40 50 Q 0 57 -40 50 Z" fill="#FFFFFF"/>
+      <ellipse cx="0" cy="76" rx="20" ry="11" fill="#E8607A"/>
+    </g>
+    <path d="M -36 38 Q 0 46 36 38 Q 32 78 0 78 Q -32 78 -36 38 Z" fill="none" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/></g></svg><svg class="L boca-gargalhada" data-boca="gargalhada" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><clipPath id="b_garg"><path d="M -36 38 Q 0 46 36 38 Q 32 88 0 88 Q -32 88 -36 38 Z"/></clipPath>
+    <path d="M -36 38 Q 0 46 36 38 Q 32 88 0 88 Q -32 88 -36 38 Z" fill="#7A1E2B"/>
+    <g clip-path="url(#b_garg)">
+      <path d="M -40 30 L 40 30 L 40 50 Q 0 57 -40 50 Z" fill="#FFFFFF"/>
+      <ellipse cx="0" cy="86" rx="20" ry="11" fill="#E8607A"/>
+    </g>
+    <path d="M -36 38 Q 0 46 36 38 Q 32 88 0 88 Q -32 88 -36 38 Z" fill="none" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/></g></svg><svg class="L boca-o" data-boca="o" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><ellipse cx="0" cy="56" rx="15" ry="19" fill="#7A1E2B" stroke="#1A0F0A" stroke-width="6"/><ellipse cx="0" cy="66" rx="9" ry="6" fill="#E8607A"/></g></svg><svg class="L boca-confiante" data-boca="confiante" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><clipPath id="r_confiantem"><path d="M -32 42 Q 4 50 38 34 Q 34 70 4 72 Q -26 72 -32 42 Z"/></clipPath><path d="M -32 42 Q 4 50 38 34 Q 34 70 4 72 Q -26 72 -32 42 Z" fill="#7A1E2B"/>
+        <g clip-path="url(#r_confiantem)"><path d="M -40 30 L 44 26 L 44 46 Q 4 58 -40 52 Z" fill="#FFFFFF"/></g>
+        <path d="M -32 42 Q 4 50 38 34 Q 34 70 4 72 Q -26 72 -32 42 Z" fill="none" stroke="#1A0F0A" stroke-width="6" stroke-linejoin="round"/></g></svg><svg class="L boca-dentes" data-boca="dentes" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><rect x="-30" y="42" width="60" height="26" rx="12" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="6"/><path d="M -30 55 L 30 55 M -15 42 L -15 68 M 0 42 L 0 68 M 15 42 L 15 68" stroke="#1A0F0A" stroke-width="3"/></g></svg><svg class="L boca-reta" data-boca="reta" viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><ellipse cx="-28" cy="-4" rx="19" ry="23" fill="#FFFFFF" stroke="#1A0F0A" stroke-width="5"/><circle cx="-22" cy="-12" r="10" fill="#24150E"/><circle cx="-25.5" cy="-16" r="3.5999999999999996" fill="#FFFFFF"/></g></svg>
+        <svg class="L suor"  viewBox="-30 0 460 620" style="transform-origin:50.00% 42.26%"><g transform="translate(200 192)"><path d="M 74 -46 Q 86 -26 80 -18 Q 72 -12 66 -20 Q 64 -30 74 -46 Z" fill="#7CC8FF" stroke="#1A0F0A" stroke-width="4"/></g></svg>
+      </div>
+    </div></div>
+    <div class="ctrl">
+      <h3>Movimento</h3>
+      <div id="mov"><button data-m="parado">Parado</button><button data-m="acenar">Acenar</button><button data-m="andar">Andar</button><button data-m="heroi">Herói</button></div>
+      <h3>Olhos</h3><div id="olh"><button data-v="aberto">aberto</button><button data-v="piscando">piscando</button><button data-v="risada">risada</button><button data-v="surpreso">surpreso</button><button data-v="confiante">confiante</button><button data-v="ops">ops</button><button data-v="pensando">pensando</button></div>
+      <h3>Boca</h3><div id="boc"><button data-v="fechada">fechada</button><button data-v="meio-aberta">meio-aberta</button><button data-v="sorriso">sorriso</button><button data-v="gargalhada">gargalhada</button><button data-v="o">o</button><button data-v="confiante">confiante</button><button data-v="dentes">dentes</button><button data-v="reta">reta</button></div>
+      <h3>Extras</h3><button id="falar">Falar (lipsync)</button><button id="piscar" class="on">Piscar sozinho</button><button id="suorBtn">Suor</button><button id="bochBtn" class="on">Bochechas</button>
+    </div>
+  </div>
+</main>
+<script>
+  const st = document.getElementById('stage');
+  let olhos = 'aberto', boca = 'sorriso', falando = false, piscar = true, piscou = false;
+  function render(){
+    document.querySelectorAll('[data-olhos]').forEach(e => e.classList.toggle('hide', e.dataset.olhos !== (piscou ? 'piscando' : olhos)));
+    document.querySelectorAll('[data-boca]').forEach(e => e.classList.toggle('hide', e.dataset.boca !== boca));
+    document.querySelectorAll('#olh button').forEach(b => b.classList.toggle('on', b.dataset.v === olhos));
+    document.querySelectorAll('#boc button').forEach(b => b.classList.toggle('on', b.dataset.v === boca));
+  }
+  document.querySelectorAll('#mov button').forEach(b => b.onclick = () => {
+    st.className = 'stage a-' + b.dataset.m;
+    document.querySelectorAll('#mov button').forEach(x => x.classList.toggle('on', x === b));
+  });
+  document.querySelector('#mov button').classList.add('on');
+  document.querySelectorAll('#olh button').forEach(b => b.onclick = () => { olhos = b.dataset.v; render(); });
+  document.querySelectorAll('#boc button').forEach(b => b.onclick = () => { boca = b.dataset.v; falando = false; document.getElementById('falar').classList.remove('on'); render(); });
+  document.getElementById('falar').onclick = e => { falando = !falando; e.target.classList.toggle('on', falando); };
+  document.getElementById('piscar').onclick = e => { piscar = !piscar; e.target.classList.toggle('on', piscar); };
+  const suor = document.querySelector('.L.suor'); suor.classList.add('hide');
+  document.getElementById('suorBtn').onclick = e => e.target.classList.toggle('on', !suor.classList.toggle('hide'));
+  const boch = document.querySelector('.L.bochechas');
+  document.getElementById('bochBtn').onclick = e => e.target.classList.toggle('on', !boch.classList.toggle('hide'));
+  const fala =['fechada', 'meio-aberta', 'sorriso', 'meio-aberta'];
+  let i = 0;
+  setInterval(() => { if (falando) { boca = fala[i++ % fala.length]; render(); } }, 130);
+  (function blink(){ setTimeout(() => { if (piscar) { piscou = true; render(); setTimeout(() => { piscou = false; render(); }, 140); } blink(); }, 1800 + Math.random() * 2200); })();
+  render();
+</script></body></html>

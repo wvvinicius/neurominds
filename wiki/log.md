@@ -2,6 +2,11 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-18 (3) — biblioteca do Teo
+- **48 vídeos de ação importados**, em 30 ações, a partir do gerador do Vini em `insumos/teo-personagem/`. Versões com som, hospedadas no Vercel Blob. Script idempotente em `app/scripts/import-teo.mjs`, rodado no local e no Turso.
+- **Cartas sem vídeo desativadas** (abraçar, pular, dormir, lavar, brincar). Continuam no admin; reativar quando houver vídeo.
+- **Decisão revisada**: vídeos são gerados por código (rig SVG), não por IA. O log de 16/10 dizia o contrário; o Vini mudou de ideia ao construir o rig.
+
 ## 2026-10-18 (2) — entrada por perfil
 - **Home vira vídeo do Teo + "Sou profissional | Sou aluno".** Motivo: pedido do Vini. Cartas abertas foram para `/cartas`, com atalho discreto, porque o stand da Mostra não terá login.
 - **"Sou aluno" é um link mágico para o responsável**: informa o e-mail cadastrado pelo profissional e recebe o link da prancha. Cobre o NM-22 em autoatendimento. A tela responde igual com ou sem cadastro, para não revelar quem está no sistema.

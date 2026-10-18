@@ -1,5 +1,7 @@
 # 11 · Personagem e prompts de vídeo
 
+> Atualização 18/10/2026: o Teo acabou sendo feito como rig em SVG e os vídeos são gerados por código em `insumos/teo-personagem/` (ver `06-conteudo-videos.md`). Os prompts abaixo continuam válidos como descrição do personagem e das cenas, e servem se alguém quiser gerar vídeos por IA no mesmo padrão.
+
 O mesmo personagem aparece em todos os vídeos. Isso dá identidade e ajuda a criança a reconhecer: "é o Teo de novo, agora ele está chutando na piscina". O nome é provisório, troque à vontade. O bloco "PERSONAGEM" vai colado no início de todo prompt, sem alterar, para manter a consistência entre gerações.
 
 ## Teo (bloco PERSONAGEM)
