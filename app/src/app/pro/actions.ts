@@ -67,6 +67,13 @@ export async function saveBoardAction(id: string, formData: FormData) {
   revalidatePath("/pro");
 }
 
+export async function saveSessionNoteAction(studentId: string, sessionId: string, formData: FormData) {
+  const me = await requireProfessional();
+  const note = text(formData, "note", 2000);
+  await pro.updateSessionNote(me.id, sessionId, note || null);
+  revalidatePath(`/pro/alunos/${studentId}`);
+}
+
 export async function regenerateTokenAction(id: string) {
   const me = await requireProfessional();
   await pro.regenerateToken(me.id, id);

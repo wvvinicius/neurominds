@@ -86,6 +86,7 @@ const SCHEMA = [
 /** Colunas acrescentadas depois da criação original. `ALTER TABLE` não tem IF NOT EXISTS. */
 const ADDED_COLUMNS: { table: string; column: string; ddl: string }[] = [
   { table: "event", column: "session_id", ddl: "ALTER TABLE event ADD COLUMN session_id TEXT" },
+  { table: "session", column: "note", ddl: "ALTER TABLE session ADD COLUMN note TEXT" },
 ];
 
 let client: Client | null = null;

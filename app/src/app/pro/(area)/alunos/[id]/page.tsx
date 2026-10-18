@@ -1,14 +1,14 @@
 import { headers } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { deleteStudentAction, regenerateTokenAction, saveBoardAction, updateStudentAction } from "@/app/pro/actions";
+import { deleteStudentAction, regenerateTokenAction, saveBoardAction, saveSessionNoteAction, updateStudentAction } from "@/app/pro/actions";
 import { ConfirmSubmit } from "@/components/admin/ConfirmSubmit";
 import { colorDot, ui } from "@/components/admin/ui";
 import { CopyButton } from "@/components/pro/CopyButton";
 import { StudentForm } from "@/components/pro/StudentForm";
 import { getActions } from "@/lib/data";
 import { fmtDateTime, fmtDuration } from "@/lib/format";
-import { getStudent, getStudentReport } from "@/lib/pro";
+import { getStudent, getStudentReport, type StudentReport } from "@/lib/pro";
 import { requireProfessional } from "@/lib/pro-auth";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +21,46 @@ async function siteUrl(): Promise<string> {
   const host = h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
   const proto = h.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   return `${proto}://${host}`;
+}
+
+type SessionRow = StudentReport["sessions"][number];
+
+/** Linha da sessão e, se foi no consultório, a linha de observação do profissional. */
+function SessionRows({ studentId, session: s }: { studentId: string; session: SessionRow }) {
+  return (
+    <>
+      <tr className="border-t border-fog">
+        <td className="px-4 py-3 font-extrabold">{fmtDateTime(s.startedAt)}</td>
+        <td className="px-4 py-3">
+          <span className={`rounded-full px-3 py-1 text-xs font-extrabold ${s.inPerson ? "bg-nm-green-soft text-nm-green-deep" : "bg-nm-yellow-soft text-nm-yellow-deep"}`}>
+            {s.inPerson ? "Consultório" : "Em casa"}
+          </span>
+        </td>
+        <td className="px-4 py-3 text-right">{fmtDuration(s.seconds)}</td>
+        <td className="px-4 py-3 text-right">{s.actionsOpened}</td>
+        <td className="px-4 py-3 text-right font-extrabold">{s.finishes}</td>
+      </tr>
+      {s.inPerson && (
+        <tr>
+          <td colSpan={5} className="px-4 pb-4 pt-0">
+            <form action={saveSessionNoteAction.bind(null, studentId, s.id)} className="flex flex-col gap-2 sm:flex-row sm:items-start">
+              <textarea
+                name="note"
+                rows={2}
+                maxLength={2000}
+                defaultValue={s.note ?? ""}
+                placeholder="Observação do atendimento (opcional). Ex.: entendeu 'chutar' no futebol, pediu para repetir o karatê."
+                className="min-h-14 w-full flex-1 rounded-xl border-2 border-fog bg-paper px-4 py-2 text-sm font-semibold outline-none transition-colors focus:border-nm-blue-deep"
+              />
+              <button type="submit" className={`${ui.btn} ${ui.secondary} h-10 shrink-0 px-4`}>
+                Salvar observação
+              </button>
+            </form>
+          </td>
+        </tr>
+      )}
+    </>
+  );
 }
 
 /** Aluno: dados, prancha (NM-21), link da criança (NM-23), relatório (NM-26), exclusão (NM-27). */
@@ -128,17 +168,7 @@ export default async function StudentPage({ params }: Props) {
                 </thead>
                 <tbody>
                   {report.sessions.map((s) => (
-                    <tr key={s.id} className="border-t border-fog">
-                      <td className="px-4 py-3 font-extrabold">{fmtDateTime(s.startedAt)}</td>
-                      <td className="px-4 py-3">
-                        <span className={`rounded-full px-3 py-1 text-xs font-extrabold ${s.inPerson ? "bg-nm-green-soft text-nm-green-deep" : "bg-nm-yellow-soft text-nm-yellow-deep"}`}>
-                          {s.inPerson ? "Consultório" : "Em casa"}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 text-right">{fmtDuration(s.seconds)}</td>
-                      <td className="px-4 py-3 text-right">{s.actionsOpened}</td>
-                      <td className="px-4 py-3 text-right font-extrabold">{s.finishes}</td>
-                    </tr>
+                    <SessionRows key={s.id} studentId={student.id} session={s} />
                   ))}
                 </tbody>
               </table>

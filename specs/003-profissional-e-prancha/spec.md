@@ -54,6 +54,7 @@ A equipe baixa um CSV agregado por semana e ação, sem nenhum identificador de 
 - **FR-007** (NM-27): Excluir aluno apaga tudo em cascata.
 - **FR-008** (NM-28): Toda consulta de aluno MUST filtrar pelo profissional logado. Não existe rota que leia aluno por id sem esse filtro.
 - **FR-009** (NM-18): CSV agregado por semana e ação, sem apelido, e-mail ou id de pessoa.
+- **FR-011** (emenda 2026-10-18): Sessões presenciais MUST aceitar uma observação do profissional (texto livre, até 2000 caracteres), editável no relatório do aluno. Sessões em casa não têm o campo. A observação é do profissional sobre o atendimento; a regra de não registrar diagnóstico ou dado de saúde continua valendo e é lembrada no rodapé.
 - **FR-010** (emenda 2026-10-18, NM-48): A entrada do site MUST ser o vídeo do Teo seguido da escolha "Sou profissional" ou "Sou aluno". "Sou profissional" leva ao login por link mágico. "Sou aluno" pede o e-mail do responsável e envia os links das pranchas cadastradas com ele; a resposta na tela é a mesma com ou sem cadastro. As cartas abertas ficam em `/cartas`, com atalho discreto na tela de escolha, para o stand da Mostra.
 
 ### Key Entities

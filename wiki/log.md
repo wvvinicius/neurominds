@@ -2,6 +2,11 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-18 (6) — v0.3.1
+- **Observação por sessão presencial** no relatório do aluno. Pedido do Vini. Coluna `session.note`, só editável pelo profissional dono e só em sessões do consultório.
+- **Versão no rodapé** com "feito com amor pela Sunter". Regra de versionamento em `04-stack-e-deploy.md`.
+- **Brevo em produção** como provedor de e-mail (API HTTP), Resend como alternativa. Pendência do Vini: desligar a restrição de IP no Brevo, senão a Vercel volta a ser barrada.
+
 ## 2026-10-18 (5)
 - **Resend em modo de teste** só entrega ao e-mail da conta (wv.vinicius@gmail.com). Enquanto não há domínio verificado, o admin ganhou "Profissionais": gera link de acesso válido por 24 h para mandar por WhatsApp. A tela de login mostra mensagem amigável nesse caso.
 

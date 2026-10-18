@@ -176,11 +176,21 @@ export async function createSession(studentId: string, inPerson: boolean): Promi
   return id;
 }
 
+/** Observação do profissional numa sessão presencial. Só do próprio aluno. */
+export async function updateSessionNote(proId: string, sessionId: string, note: string | null) {
+  const db = await getDb();
+  await db.execute({
+    sql: `UPDATE session SET note = ? WHERE id = ? AND in_person = 1
+          AND student_id IN (SELECT id FROM student WHERE professional_id = ?)`,
+    args: [note, sessionId, proId],
+  });
+}
+
 /* ---------- relatório (NM-26) ---------- */
 
 export type StudentReport = {
   totals: { sessions: number; minutes: number; lastAt: string | null; finishes: number };
-  sessions: { id: string; startedAt: string; seconds: number; inPerson: boolean; actionsOpened: number; finishes: number }[];
+  sessions: { id: string; startedAt: string; seconds: number; inPerson: boolean; actionsOpened: number; finishes: number; note: string | null }[];
   perAction: { id: string; name: string; emoji: string; opens: number; plays: number; finishes: number }[];
 };
 
@@ -198,7 +208,7 @@ export async function getStudentReport(proId: string, id: string): Promise<Stude
       args: [id, id],
     }),
     db.execute({
-      sql: `SELECT s.id, s.started_at, s.in_person,
+      sql: `SELECT s.id, s.started_at, s.in_person, s.note,
           (julianday(COALESCE(s.ended_at, s.started_at)) - julianday(s.started_at)) * 86400 AS seconds,
           (SELECT COUNT(DISTINCT action_id) FROM event e WHERE e.session_id = s.id AND e.type = 'open_action') AS actions_opened,
           (SELECT COUNT(*) FROM event e WHERE e.session_id = s.id AND e.type = 'finish_video') AS finishes
@@ -228,6 +238,7 @@ export async function getStudentReport(proId: string, id: string): Promise<Stude
       inPerson: Number(r.in_person) === 1,
       actionsOpened: Number(r.actions_opened ?? 0),
       finishes: Number(r.finishes ?? 0),
+      note: r.note ? String(r.note) : null,
     })),
     perAction: perAction.rows.map((r) => ({
       id: String(r.id),
