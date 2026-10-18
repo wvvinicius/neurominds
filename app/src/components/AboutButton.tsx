@@ -23,10 +23,9 @@ export function AboutButton() {
         type="button"
         onClick={open}
         onPointerEnter={onHover}
-        aria-label="Sobre a NeuroMinds"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-mist font-display text-3xl text-ink/70 transition-[background-color,transform] hover:bg-fog motion-safe:active:scale-90"
+        className="flex h-14 items-center justify-center rounded-full bg-mist px-4 text-base font-extrabold text-ink/70 transition-[background-color,transform] hover:bg-fog motion-safe:active:scale-90"
       >
-        ?
+        A NeuroMinds
       </button>
 
       <dialog
