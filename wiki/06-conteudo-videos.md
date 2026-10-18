@@ -5,6 +5,10 @@ O Vini construiu um **gerador próprio** em `insumos/teo-personagem/`: o Teo é 
 
 Para colocar no app: `cd app && node scripts/import-teo.mjs --target turso`. O script sobe as versões com som para o Vercel Blob (URLs em `app/scripts/teo-blob-urls.json`), cria ações que faltam e cadastra os vídeos com legenda curta. É idempotente. Vídeo novo = linha nova em `VIDEOS_PLAN` dentro do script.
 
+**Trocar uma leva inteira de vídeos** (nova pasta, mesmos IDs): `node scripts/import-teo.mjs --target local --source ../insumos/<pasta> --release v3` e depois o mesmo com `--target turso`. Os arquivos vão para um caminho novo no Blob (`acoes/v3/`), o banco é apontado para eles e os antigos são apagados. Caminho novo em vez de sobrescrever: o Blob e os navegadores guardam cache por muito tempo, e a URL nova garante que ninguém veja a versão antiga.
+
+Desde 18/10/2026 (v2) os vídeos executam a ação **uma vez** (3 a 4 s), não três em loop. Os três de chutar ficam em `app/public/videos/chutar/` e foram trocados junto.
+
 O resto deste documento é a especificação que vale para qualquer vídeo, gerado por código ou por IA.
 
 ## Especificação técnica

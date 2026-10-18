@@ -1,22 +1,28 @@
 /**
- * Importa os vídeos de ação do Teo (insumos/teo-personagem/video/acoes) para o app.
+ * Importa ou atualiza os vídeos de ação do Teo no app.
  *
- *   node scripts/import-teo.mjs --target local   # banco em data/neurominds.db
- *   node scripts/import-teo.mjs --target turso   # produção (lê ../.env.local)
+ *   node scripts/import-teo.mjs --target local                      # primeira importação (banco em data/)
+ *   node scripts/import-teo.mjs --target turso                      # produção
+ *   node scripts/import-teo.mjs --target turso --source ../insumos/novos-acao-uma-vez --release v2
+ *       → sobe os arquivos da pasta para acoes/v2/<ID>.mp4, aponta o banco para eles e apaga os antigos do Blob
  *
- * 1. Sobe cada "<ID>-<slug>-som.mp4" para o Vercel Blob (uma vez; as URLs ficam em scripts/teo-blob-urls.json).
- * 2. Cria as ações que faltam (emoji, cor em rodízio) e cadastra os vídeos com legenda curta.
- * 3. Desativa ações que ficariam sem vídeo. Idempotente: pode rodar de novo.
+ * Cada "<ID>-<slug>-som.mp4" vira um vídeo. URLs ficam em scripts/teo-blob-urls.json.
+ * Cria ações que faltam (emoji, cor em rodízio), cadastra vídeos com legenda curta,
+ * desativa ações sem vídeo. Idempotente.
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import path from "node:path";
-import { put } from "@vercel/blob";
+import { del, list, put } from "@vercel/blob";
 import { createClient } from "@libsql/client";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
-const VIDEOS = path.resolve(ROOT, "../insumos/teo-personagem/video/acoes");
 const URLS_FILE = path.resolve(ROOT, "scripts/teo-blob-urls.json");
+
+const arg = (name, fallback) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : fallback);
+const target = arg("--target", "local");
+const SOURCE = path.resolve(ROOT, arg("--source", "../insumos/teo-personagem/video/acoes"));
+const RELEASE = arg("--release", ""); // "" = acoes/<ID>.mp4 ; "v2" = acoes/v2/<ID>.mp4
 
 /* ---------- plano: ação → emoji; vídeo → legenda ---------- */
 const ACTIONS = {
@@ -71,26 +77,28 @@ function loadEnv(file) {
   );
 }
 const env = { ...loadEnv(path.resolve(ROOT, "../.env.local")), ...loadEnv(path.resolve(ROOT, ".env.local")), ...process.env };
-const target = process.argv.includes("--target") ? process.argv[process.argv.indexOf("--target") + 1] : "local";
+if (!env.BLOB_READ_WRITE_TOKEN) throw new Error("BLOB_READ_WRITE_TOKEN ausente");
 
 const db =
   target === "turso"
     ? createClient({ url: env.TURSO_DATABASE_URL, authToken: env.TURSO_AUTH_TOKEN })
     : createClient({ url: `file:${path.resolve(ROOT, "data/neurominds.db")}` });
 
+const blobPath = (id) => (RELEASE ? `acoes/${RELEASE}/${id}.mp4` : `acoes/${id}.mp4`);
+
 /* ---------- 1. Blob ---------- */
 async function uploadAll() {
+  // urls[ID] = URL atual. Com --release, a URL precisa conter o caminho da release; senão, reenvia.
   const urls = existsSync(URLS_FILE) ? JSON.parse(readFileSync(URLS_FILE, "utf8")) : {};
-  if (!env.BLOB_READ_WRITE_TOKEN) throw new Error("BLOB_READ_WRITE_TOKEN ausente");
-  const pending = VIDEOS_PLAN.filter(([id]) => !urls[id]);
-  console.log(`Blob: ${Object.keys(urls).length} já enviados, ${pending.length} a enviar`);
+  const pending = VIDEOS_PLAN.filter(([id]) => !urls[id] || !urls[id].includes(`/${blobPath(id)}`));
+  console.log(`Blob (${RELEASE || "base"}): ${VIDEOS_PLAN.length - pending.length} já no lugar, ${pending.length} a enviar de ${SOURCE}`);
   const batch = 4;
   for (let i = 0; i < pending.length; i += batch) {
     await Promise.all(
       pending.slice(i, i + batch).map(async ([id]) => {
-        const file = path.join(VIDEOS, `${id}-som.mp4`);
+        const file = path.join(SOURCE, `${id}-som.mp4`);
         if (!existsSync(file)) throw new Error(`arquivo não encontrado: ${file}`);
-        const blob = await put(`acoes/${id}.mp4`, readFileSync(file), {
+        const blob = await put(blobPath(id), readFileSync(file), {
           access: "public",
           addRandomSuffix: false,
           allowOverwrite: true,
@@ -103,7 +111,7 @@ async function uploadAll() {
     );
     writeFileSync(URLS_FILE, JSON.stringify(urls, null, 2) + "\n");
   }
-  return urls;
+  return { urls };
 }
 
 /* ---------- 2. Banco ---------- */
@@ -125,10 +133,16 @@ async function importDb(urls) {
     console.log("  + ação", name);
   }
 
-  let added = 0;
+  let added = 0, repointed = 0;
   for (const [vid, slug, caption] of VIDEOS_PLAN) {
     const actionId = idBySlug.get(slug);
     const src = urls[vid];
+    // Linhas que apontam para outra versão do mesmo vídeo (…/acoes/<ID>.mp4, …/acoes/v1/<ID>.mp4) passam para a atual.
+    const r = await db.execute({
+      sql: "UPDATE video SET src = ? WHERE action_id = ? AND src LIKE ? AND src != ?",
+      args: [src, actionId, `%/${vid}.mp4`, src],
+    });
+    repointed += r.rowsAffected;
     const dup = await db.execute({ sql: "SELECT 1 FROM video WHERE action_id = ? AND src = ?", args: [actionId, src] });
     if (dup.rows.length) continue;
     const m = await db.execute({ sql: "SELECT COALESCE(MAX(sort_order), 0) AS m FROM video WHERE action_id = ?", args: [actionId] });
@@ -138,17 +152,34 @@ async function importDb(urls) {
     });
     added++;
   }
-  console.log(`  + ${added} vídeos`);
+  console.log(`  + ${added} vídeos novos, ${repointed} apontados para a nova versão`);
 
-  // 3. Cartas sem vídeo saem do site (continuam no admin, inativas).
   const empty = await db.execute(
     "UPDATE action SET is_active = 0 WHERE is_active = 1 AND NOT EXISTS (SELECT 1 FROM video v WHERE v.action_id = action.id AND v.is_active = 1)",
   );
-  console.log(`  - ${empty.rowsAffected} ações sem vídeo desativadas`);
+  if (empty.rowsAffected) console.log(`  - ${empty.rowsAffected} ações sem vídeo desativadas`);
 
   const totals = await db.execute("SELECT (SELECT COUNT(*) FROM action WHERE is_active = 1) AS a, (SELECT COUNT(*) FROM video WHERE is_active = 1) AS v");
   console.log(`Banco (${target}): ${totals.rows[0].a} ações ativas, ${totals.rows[0].v} vídeos ativos`);
 }
 
-const urls = await uploadAll();
+/* ---------- 3. Limpeza: blobs antigos que nenhum banco deve mais usar ---------- */
+async function cleanup(urls) {
+  // Só apaga quando o alvo é a produção: é o último banco a ser apontado para a versão nova.
+  if (target !== "turso") return;
+  const current = new Set(Object.values(urls));
+  const stale = [];
+  let cursor;
+  do {
+    const page = await list({ prefix: "acoes/", cursor, token: env.BLOB_READ_WRITE_TOKEN });
+    for (const b of page.blobs) if (!current.has(b.url)) stale.push(b.url);
+    cursor = page.hasMore ? page.cursor : undefined;
+  } while (cursor);
+  if (!stale.length) return;
+  await del(stale, { token: env.BLOB_READ_WRITE_TOKEN });
+  console.log(`  🗑 ${stale.length} blobs antigos apagados`);
+}
+
+const { urls } = await uploadAll();
 await importDb(urls);
+await cleanup(urls);

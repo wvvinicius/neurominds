@@ -2,6 +2,10 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-18 (9)
+- **Vídeos trocados pela versão de execução única** (3 a 4 s, sem repetir três vezes), de `insumos/novos-acao-uma-vez/`. 48 no Blob em `acoes/v2/`, banco local e Turso apontados, 48 blobs antigos apagados. Os três de chutar trocados em `public/videos/chutar/`. Motivo: decisão do Vini; a repetição fica a cargo do botão "repetir" e do "ver de novo".
+- Script de importação ganhou `--source` e `--release` para levas futuras.
+
 ## 2026-10-18 (8)
 - **"Prancha" vira "painel de verbos"** em toda a interface e nos e-mails. Pedido do Vini. Código, rotas e tabelas não mudam. Coluna do CSV passou de `sessoes_de_prancha` para `sessoes_de_painel`.
 - **Modal "A NeuroMinds"**: resumo em quatro linhas com o Teo acenando, no cabeçalho das telas públicas.
