@@ -76,7 +76,10 @@ export async function startLogin(email: string, name: string | null): Promise<{ 
 <p><a href="${link}" style="display:inline-block;padding:14px 24px;border-radius:999px;background:#1b7fbd;color:#fff;font-weight:800;text-decoration:none">Entrar na NeuroMinds</a></p>
 <p style="color:#666;font-size:13px">Se você não pediu este acesso, ignore este e-mail.</p>`,
   });
-  return status === "sent" ? { sent: true } : { sent: false, link };
+  if (status === "sent") return { sent: true };
+  // Só em desenvolvimento o link pode aparecer na tela. Em produção seria login livre.
+  if (process.env.NODE_ENV !== "production") return { sent: false, link };
+  throw new Error("envio de e-mail não configurado (RESEND_API_KEY). Avise o responsável pelo site.");
 }
 
 /** Valida o token, cria o profissional se for a primeira vez e abre a sessão. */
