@@ -22,19 +22,21 @@ event    id, anon_session_id, type, action_id?, video_id?, duration_ms?, created
 ```
 `event.type`: `open_home` · `open_action` · `play_video` · `finish_video`
 
-### Fase 2 (acrescenta)
+### Fase 2 (implementado na spec 003)
 ```
-professional  id (= auth.users.id), name, created_at
-student       id, professional_id, nickname, guardian_email, access_token, created_at
-board         id, student_id, name, created_at
-board_action  board_id, action_id, sort_order
-session       id, student_id, board_id, started_at, ended_at, in_person
-event         + session_id? (nulo quando o uso é anônimo)
+professional    id, email, name, created_at
+login_token     token_hash, email, name, expires_at, used_at
+student         id, professional_id, nickname, guardian_email, access_token, created_at
+student_action  student_id, action_id, sort_order        ← a prancha
+session         id, student_id, in_person, started_at, ended_at
+event           + session_id (nulo quando o uso é anônimo)
 ```
 Regras:
 - `student.nickname` nunca é nome real. Nenhum campo de diagnóstico, idade ou laudo.
-- `access_token` é o que vai no link do convite. A criança não tem senha.
-- Um aluno pode ter várias pranchas, uma por fase do atendimento.
+- `access_token` é o que vai no link da criança. A criança não tem senha.
+- **Uma prancha por aluno** (decisão de MVP, 18/10/2026): a prancha é o conjunto em `student_action`. Várias pranchas nomeadas ficam no backlog.
+- Sessão nasce quando a prancha é aberta numa aba e termina no último evento. Presencial quando quem abre é o profissional dono do aluno.
+- Toda consulta de aluno filtra por `professional_id` do logado. É a "segurança por linha" do SQLite.
 
 ## Fluxos
 

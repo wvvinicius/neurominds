@@ -12,12 +12,12 @@ const colorClasses: Record<ActionColor, string> = {
   green: "bg-nm-green-mid hover:bg-nm-green",
 };
 
-type Props = { action: Action; index?: number };
+type Props = { action: Action; index?: number; href?: string };
 
-export function ActionCard({ action, index = 0 }: Props) {
+export function ActionCard({ action, index = 0, href }: Props) {
   return (
     <Link
-      href={`/acao/${action.slug}`}
+      href={href ?? `/acao/${action.slug}`}
       onClick={() => play("pop")}
       onPointerEnter={onHover}
       style={{ animationDelay: `${index * 70}ms` }}

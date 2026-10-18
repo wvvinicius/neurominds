@@ -1,8 +1,8 @@
 # 10 · Funcionalidades
 
-Catálogo completo com ID e status. Base do spec kit: cada funcionalidade aprovada vira (ou entra em) uma spec. Esforço: P = até 2 h, M = meio dia, G = 1 dia ou mais. Status: **feito**, **a fazer** (aprovado, na fila), **depois** (Fase 2, não aprovado ainda), **backlog**.
+Catálogo completo com ID e status. Base do spec kit: cada funcionalidade aprovada vira (ou entra em) uma spec. Esforço: P = até 2 h, M = meio dia, G = 1 dia ou mais. Status: **feito**, **a fazer** (aprovado, na fila), **feito** (Fase 2, não aprovado ainda), **backlog**.
 
-Atualizado em 2026-10-16, após o primeiro deploy em https://neurominds.vercel.app.
+Atualizado em 2026-10-18, após a spec 003 (área do profissional).
 
 ## Tela pública (criança) — spec 001
 | ID | Funcionalidade | O que faz | Fase | Esforço | Status |
@@ -30,13 +30,13 @@ Atualizado em 2026-10-16, após o primeiro deploy em https://neurominds.vercel.a
 | NM-13 | Upload de vídeos | Enviar para o Vercel Blob ou adicionar por link; legenda, ordem, ativo, excluir. Banco SQLite (libSQL/Turso). | 1 | M | feito |
 | NM-14 | Pré-visualização | Player de cada vídeo no admin. | 1 | P | feito |
 | NM-15 | Painel de uso | Totais, por ação e por vídeo, só contagens anônimas. | 1 | P | feito |
-| NM-16 | Múltiplos editores | Admin vira papel no Supabase Auth. | 2 | M | depois |
+| NM-16 | Múltiplos editores | Login próprio para cada pessoa do admin. | 2 | M | depois |
 
 ## Métricas e dados
 | ID | Funcionalidade | O que faz | Fase | Esforço | Status |
 |---|---|---|---|---|---|
 | NM-17 | Eventos anônimos | open_home, open_action, play_video, finish_video com duração. Id anônimo de 24 h. | 1 | P | feito |
-| NM-18 | Exportação anonimizada | CSV agregado para a FENIC. | 2 | P | depois |
+| NM-18 | Exportação anonimizada | CSV agregado por semana e ação, sem identificadores. | 2 | P | feito |
 
 ## Conteúdo
 | ID | Funcionalidade | O que faz | Fase | Esforço | Status |
@@ -48,16 +48,16 @@ Atualizado em 2026-10-16, após o primeiro deploy em https://neurominds.vercel.a
 ## Profissional e aluno — Fase 2
 | ID | Funcionalidade | O que faz | Fase | Esforço | Status |
 |---|---|---|---|---|---|
-| NM-19 | Login do profissional | Link mágico por e-mail. | 2 | M | depois |
-| NM-20 | Cadastro de alunos | Apelido e e-mail do responsável, sem nome real. | 2 | M | depois |
-| NM-21 | Prancha por aluno | Subconjunto de ações escolhido pelo profissional. | 2 | M | depois |
-| NM-22 | Convite por e-mail | Responsável recebe link com token. | 2 | M | depois |
-| NM-23 | Acesso da criança por link | Abre só as ações da prancha, sem login. | 2 | P | depois |
-| NM-24 | Modo presencial | Profissional abre a prancha no consultório. | 2 | P | depois |
-| NM-25 | Sessões vinculadas | Início, fim, presencial ou em casa. | 2 | M | depois |
-| NM-26 | Relatório do aluno | Frequência, duração, aberturas, vídeos até o fim. | 2 | G | depois |
-| NM-27 | Exclusão de aluno | Apaga tudo em cascata. | 2 | P | depois |
-| NM-28 | Segurança por linha | RLS no Supabase. | 2 | M | depois |
+| NM-19 | Login do profissional | Link mágico por e-mail. | 2 | M | feito |
+| NM-20 | Cadastro de alunos | Apelido e e-mail do responsável, sem nome real. | 2 | M | feito |
+| NM-21 | Prancha por aluno | Subconjunto de ações escolhido pelo profissional. Uma prancha por aluno. | 2 | M | feito |
+| NM-22 | Convite por e-mail | Responsável recebe link com token. Hoje o profissional copia o link e manda. | 2 | M | depois |
+| NM-23 | Acesso da criança por link | Abre só as ações da prancha, sem login. | 2 | P | feito |
+| NM-24 | Modo presencial | Profissional abre a prancha no consultório; sessão marcada como presencial. | 2 | P | feito |
+| NM-25 | Sessões vinculadas | Início, fim, presencial ou em casa. | 2 | M | feito |
+| NM-26 | Relatório do aluno | Frequência, duração, aberturas, vídeos até o fim. | 2 | G | feito |
+| NM-27 | Exclusão de aluno | Apaga tudo em cascata. | 2 | P | feito |
+| NM-28 | Segurança por linha | Filtro por profissional em toda consulta de aluno. | 2 | M | feito |
 
 ## Infra
 | ID | Funcionalidade | O que faz | Fase | Esforço | Status |

@@ -43,6 +43,49 @@ const SCHEMA = [
   )`,
   `CREATE INDEX IF NOT EXISTS idx_event_type ON event(type, action_id)`,
   `CREATE INDEX IF NOT EXISTS idx_event_created ON event(created_at)`,
+
+  /* ---- Fase 2 (spec 003): profissional, aluno, prancha, sessão ---- */
+  `CREATE TABLE IF NOT EXISTS professional (
+    id TEXT PRIMARY KEY,
+    email TEXT NOT NULL UNIQUE,
+    name TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  )`,
+  `CREATE TABLE IF NOT EXISTS login_token (
+    token_hash TEXT PRIMARY KEY,
+    email TEXT NOT NULL,
+    name TEXT,
+    expires_at TEXT NOT NULL,
+    used_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS student (
+    id TEXT PRIMARY KEY,
+    professional_id TEXT NOT NULL,
+    nickname TEXT NOT NULL,
+    guardian_email TEXT,
+    access_token TEXT NOT NULL UNIQUE,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  )`,
+  `CREATE INDEX IF NOT EXISTS idx_student_pro ON student(professional_id)`,
+  `CREATE TABLE IF NOT EXISTS student_action (
+    student_id TEXT NOT NULL,
+    action_id TEXT NOT NULL,
+    sort_order INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (student_id, action_id)
+  )`,
+  `CREATE TABLE IF NOT EXISTS session (
+    id TEXT PRIMARY KEY,
+    student_id TEXT NOT NULL,
+    in_person INTEGER NOT NULL DEFAULT 0,
+    started_at TEXT NOT NULL DEFAULT (datetime('now')),
+    ended_at TEXT
+  )`,
+  `CREATE INDEX IF NOT EXISTS idx_session_student ON session(student_id, started_at)`,
+];
+
+/** Colunas acrescentadas depois da criação original. `ALTER TABLE` não tem IF NOT EXISTS. */
+const ADDED_COLUMNS: { table: string; column: string; ddl: string }[] = [
+  { table: "event", column: "session_id", ddl: "ALTER TABLE event ADD COLUMN session_id TEXT" },
 ];
 
 let client: Client | null = null;
@@ -76,6 +119,11 @@ export async function getDb(): Promise<Client> {
 async function migrate() {
   const c = raw();
   for (const sql of SCHEMA) await c.execute(sql);
+  for (const col of ADDED_COLUMNS) {
+    const info = await c.execute(`PRAGMA table_info(${col.table})`);
+    if (!info.rows.some((r) => r.name === col.column)) await c.execute(col.ddl);
+  }
+  await c.execute("CREATE INDEX IF NOT EXISTS idx_event_session ON event(session_id)");
   const r = await c.execute("SELECT COUNT(*) AS n FROM action");
   if (Number(r.rows[0].n) === 0) await seedFromJson(c);
 }

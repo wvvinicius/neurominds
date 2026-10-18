@@ -24,7 +24,19 @@ ADMIN_PASSWORD=          ← senha da equipe de conteúdo
 TURSO_DATABASE_URL=      ← libsql://...turso.io  (sem ela: arquivo local em dev, /tmp efêmero na Vercel)
 TURSO_AUTH_TOKEN=
 BLOB_READ_WRITE_TOKEN=   ← Vercel Blob (sem ela: "Enviar arquivo" avisa, "Adicionar por link" funciona)
+RESEND_API_KEY=          ← link mágico do profissional (sem ela: em dev o link aparece na tela; em produção a tela avisa)
+MAIL_FROM=               ← remetente; exige domínio verificado no Resend
+AUTH_SECRET=             ← cookie do profissional (se vazio, usa ADMIN_PASSWORD)
+NEXT_PUBLIC_SITE_URL=    ← base dos links de e-mail e da criança (se vazio, deduz do request)
 ```
+
+## Áreas do app
+| Rota | Quem | Acesso |
+|---|---|---|
+| `/` e `/acao/[slug]` | criança, público | aberto |
+| `/p/[token]` | criança com prancha | link secreto, sem login |
+| `/pro` | profissional | link mágico por e-mail |
+| `/admin` | equipe de conteúdo | senha única |
 Sem Turso em produção, o site público funciona com o seed e o admin mostra uma faixa amarela avisando que o banco é temporário.
 
 ## Estrutura do app (specs 001 e 002 entregues)

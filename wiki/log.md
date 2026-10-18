@@ -2,6 +2,13 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-18 — spec 003
+- **Área do profissional no ar** (`/pro`): login por link mágico, alunos por apelido, prancha por aluno, link da criança, sessões, relatório, exclusão em cascata, CSV anônimo.
+- **Uma prancha por aluno.** A entidade `board` do modelo original virou `student_action`. Motivo: MVP; várias pranchas nomeadas só se um profissional pedir.
+- **Convite por e-mail (NM-22) fora.** O profissional copia o link e manda como preferir. Motivo: evita depender de domínio verificado para o uso começar.
+- **Segurança por linha na aplicação.** SQLite não tem RLS; todas as funções de aluno recebem o id do profissional logado.
+- **Resend para e-mail, por HTTP, sem SDK.** Sem chave, em dev o link aparece na tela. Para enviar a qualquer e-mail é preciso domínio verificado, o que liga NM-30 (domínio) à Fase 2.
+
 ## 2026-10-16 (noite, 9)
 - **Turso e Blob ligados em produção.** Banco e vídeos enviados agora persistem. A faixa de "banco temporário" sumiu do admin. Seed rodou na primeira visita.
 - A integração instalou arquivos de referência do Turso (`.agents/`, `.claude/skills/turso-cloud/`, `skills-lock.json`). Removidos: não agregam ao produto. Documentação do libSQL está em `app/src/lib/db.ts` e neste wiki.

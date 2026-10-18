@@ -28,6 +28,7 @@ export async function POST(request: Request) {
       actionId: short(body.actionId),
       videoId: short(body.videoId),
       durationMs,
+      sessionId: short(body.sessionId),
     });
   } catch {
     /* métrica nunca derruba a experiência */

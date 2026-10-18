@@ -7,10 +7,10 @@ import { onHover, play } from "@/lib/sound";
  * Botão de voltar (NM-03): sempre no canto superior esquerdo, 64 px,
  * mesmo ícone em todas as telas.
  */
-export function BackButton() {
+export function BackButton({ href = "/" }: { href?: string }) {
   return (
     <Link
-      href="/"
+      href={href}
       aria-label="Voltar para as cartas"
       onClick={() => play("tick")}
       onPointerEnter={onHover}

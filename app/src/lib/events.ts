@@ -14,14 +14,20 @@ export type EventInput = {
   actionId?: string | null;
   videoId?: string | null;
   durationMs?: number | null;
+  /** Sessão de prancha (NM-25). Nulo no uso público. */
+  sessionId?: string | null;
 };
 
 export async function insertEvent(e: EventInput) {
   const db = await getDb();
   await db.execute({
-    sql: "INSERT INTO event (anon_session_id, type, action_id, video_id, duration_ms) VALUES (?, ?, ?, ?, ?)",
-    args: [e.anonSessionId, e.type, e.actionId ?? null, e.videoId ?? null, e.durationMs ?? null],
+    sql: "INSERT INTO event (anon_session_id, type, action_id, video_id, duration_ms, session_id) VALUES (?, ?, ?, ?, ?, ?)",
+    args: [e.anonSessionId, e.type, e.actionId ?? null, e.videoId ?? null, e.durationMs ?? null, e.sessionId ?? null],
   });
+  // Última atividade da sessão: o fim é o último evento.
+  if (e.sessionId) {
+    await db.execute({ sql: "UPDATE session SET ended_at = datetime('now') WHERE id = ?", args: [e.sessionId] });
+  }
 }
 
 export type UsageStats = {
