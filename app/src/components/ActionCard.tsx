@@ -21,8 +21,18 @@ export function ActionCard({ action, index = 0, href }: Props) {
       onClick={() => play("pop")}
       onPointerEnter={onHover}
       style={{ animationDelay: `${index * 70}ms` }}
-      className={`group flex aspect-square min-h-36 flex-col items-center justify-center gap-2 rounded-2xl p-4 text-ink ring-4 ring-inset ring-paper/60 transition-[background-color,transform] duration-150 motion-safe:animate-pop motion-safe:active:scale-[0.97] ${colorClasses[action.color]}`}
+      className={`group relative flex aspect-square min-h-36 flex-col items-center justify-center gap-2 rounded-2xl p-4 text-ink ring-4 ring-inset ring-paper/60 transition-[background-color,transform] duration-150 motion-safe:animate-pop motion-safe:active:scale-[0.97] ${colorClasses[action.color]}`}
     >
+      {/* Quantidade de vídeos, discreta, no canto */}
+      <span
+        className="absolute right-3 top-3 flex h-8 items-center gap-1 rounded-full bg-paper/80 px-2.5 text-sm font-extrabold text-ink/70"
+        aria-label={`${action.videos.length} ${action.videos.length === 1 ? "vídeo" : "vídeos"}`}
+      >
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        {action.videos.length}
+      </span>
       <span
         className="text-6xl leading-none motion-safe:group-hover:animate-wiggle motion-safe:group-active:animate-wiggle sm:text-7xl"
         aria-hidden="true"

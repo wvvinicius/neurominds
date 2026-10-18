@@ -2,6 +2,10 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-18 (4)
+- **Contador de vídeos em cada carta**: pílula branca no canto com play e número. Pedido do Vini.
+- **Conhecido e aceito**: `/acao/<slug-inexistente>` devolve HTTP 200 com a página "carta não existe", porque o `loading.tsx` da rota começa a transmitir antes do `notFound()`. Não afeta a criança; só o código HTTP de endereço digitado à mão.
+
 ## 2026-10-18 (3) — biblioteca do Teo
 - **48 vídeos de ação importados**, em 30 ações, a partir do gerador do Vini em `insumos/teo-personagem/`. Versões com som, hospedadas no Vercel Blob. Script idempotente em `app/scripts/import-teo.mjs`, rodado no local e no Turso.
 - **Cartas sem vídeo desativadas** (abraçar, pular, dormir, lavar, brincar). Continuam no admin; reativar quando houver vídeo.
