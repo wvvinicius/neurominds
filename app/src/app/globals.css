@@ -193,6 +193,23 @@ body {
   );
 }
 
+/* Tailwind 4 não põe cursor de mão em botões; aqui vale para tudo que é clicável. */
+button,
+a,
+label,
+summary,
+[role="button"],
+[role="tab"],
+input[type="file"],
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
 /* Foco visível para teclado, sem poluir o toque. */
 :focus-visible {
   outline: 3px solid var(--color-nm-blue-deep);
