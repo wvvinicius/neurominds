@@ -22,6 +22,25 @@ export function isColor(v: unknown): v is ActionColor {
   return typeof v === "string" && (ACTION_COLORS as string[]).includes(v);
 }
 
+/* ---------- profissionais ---------- */
+
+export type ProfessionalSummary = { id: string; email: string; name: string | null; createdAt: string; studentCount: number };
+
+export async function listProfessionals(): Promise<ProfessionalSummary[]> {
+  const db = await getDb();
+  const r = await db.execute(
+    `SELECT p.*, (SELECT COUNT(*) FROM student s WHERE s.professional_id = p.id) AS student_count
+     FROM professional p ORDER BY p.created_at DESC`,
+  );
+  return r.rows.map((row) => ({
+    id: String(row.id),
+    email: String(row.email),
+    name: row.name ? String(row.name) : null,
+    createdAt: String(row.created_at),
+    studentCount: Number(row.student_count),
+  }));
+}
+
 /* ---------- ações ---------- */
 
 export async function listActionsAdmin(): Promise<ActionSummary[]> {

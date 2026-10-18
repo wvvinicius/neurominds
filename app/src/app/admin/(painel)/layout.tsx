@@ -27,6 +27,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <Link href="/admin" className={`${ui.btn} ${ui.secondary} h-10 px-4`}>
               Ações
             </Link>
+            <Link href="/admin/profissionais" className={`${ui.btn} ${ui.secondary} h-10 px-4`}>
+              Profissionais
+            </Link>
             <Link href="/admin/uso" className={`${ui.btn} ${ui.secondary} h-10 px-4`}>
               Uso
             </Link>

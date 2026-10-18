@@ -21,7 +21,11 @@ export async function loginProAction(_prev: LoginState, formData: FormData): Pro
     const r = await startLogin(email, name);
     return r.sent ? { sentTo: email } : { sentTo: email, devLink: r.link };
   } catch (e) {
-    return { error: e instanceof Error ? `Não consegui enviar o e-mail: ${e.message}` : "Não consegui enviar o e-mail." };
+    const msg = e instanceof Error ? e.message : "";
+    if (/only send testing emails/i.test(msg)) {
+      return { error: "O envio de e-mail ainda está em modo de teste. Peça seu link de acesso à equipe da NeuroMinds." };
+    }
+    return { error: msg ? `Não consegui enviar o e-mail: ${msg}` : "Não consegui enviar o e-mail." };
   }
 }
 

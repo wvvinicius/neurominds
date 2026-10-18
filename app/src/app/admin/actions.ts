@@ -5,8 +5,10 @@ import { redirect } from "next/navigation";
 import { del } from "@vercel/blob";
 import * as admin from "@/lib/admin";
 import { isAdmin, login, logout } from "@/lib/auth";
+import { createLoginLink } from "@/lib/pro-auth";
 
 export type FormState = { error?: string };
+export type ProLinkState = { error?: string; link?: string; email?: string };
 
 async function guard() {
   if (!(await isAdmin())) redirect("/admin/login");
@@ -30,6 +32,19 @@ export async function loginAction(_prev: FormState, formData: FormData): Promise
 export async function logoutAction() {
   await logout();
   redirect("/admin/login");
+}
+
+/* ---------- profissionais ---------- */
+
+/** Link de acesso gerado pelo admin, válido por 24 h, para mandar por WhatsApp enquanto o e-mail não sai. */
+export async function createProLinkAction(_prev: ProLinkState, formData: FormData): Promise<ProLinkState> {
+  await guard();
+  const email = text(formData, "email", 120).toLowerCase();
+  const name = text(formData, "name", 60) || null;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { error: "Digite um e-mail válido." };
+  const link = await createLoginLink(email, name, 24 * 60);
+  revalidatePath("/admin/profissionais");
+  return { link, email };
 }
 
 /* ---------- ações ---------- */

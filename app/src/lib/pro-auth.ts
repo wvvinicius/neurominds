@@ -58,16 +58,21 @@ async function baseUrl(): Promise<string> {
   return `${proto}://${host}`;
 }
 
-/** Gera o link mágico e envia. Devolve o link quando o e-mail não foi enviado (dev). */
-export async function startLogin(email: string, name: string | null): Promise<{ sent: boolean; link?: string }> {
+/** Cria um link mágico válido por `minutes`. Usado pelo login por e-mail e pelo admin. */
+export async function createLoginLink(email: string, name: string | null, minutes = TOKEN_MINUTES): Promise<string> {
   const db = await getDb();
   const token = randomBytes(32).toString("hex");
-  const expires = new Date(Date.now() + TOKEN_MINUTES * 60 * 1000).toISOString().replace("T", " ").slice(0, 19);
+  const expires = new Date(Date.now() + minutes * 60 * 1000).toISOString().replace("T", " ").slice(0, 19);
   await db.execute({
     sql: "INSERT INTO login_token (token_hash, email, name, expires_at) VALUES (?, ?, ?, ?)",
     args: [hashToken(token), email, name, expires],
   });
-  const link = `${await baseUrl()}/pro/entrar?token=${token}`;
+  return `${await baseUrl()}/pro/entrar?token=${token}`;
+}
+
+/** Gera o link mágico e envia. Devolve o link quando o e-mail não foi enviado (dev). */
+export async function startLogin(email: string, name: string | null): Promise<{ sent: boolean; link?: string }> {
+  const link = await createLoginLink(email, name);
   const status = await sendMail({
     to: email,
     subject: "Seu acesso à NeuroMinds",
