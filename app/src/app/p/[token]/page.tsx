@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { ActionCard } from "@/components/ActionCard";
+import { BackButton } from "@/components/BackButton";
 import { BoardSession } from "@/components/BoardSession";
 import { Footer } from "@/components/Footer";
 import { FullscreenButton } from "@/components/FullscreenButton";
@@ -29,7 +30,8 @@ export default async function BoardPage({ params }: Props) {
       <BoardSession token={token} />
       <Track type="open_home" />
       <div className="nm-stripe" aria-hidden="true" />
-      <header className="flex items-center justify-between px-4 py-4 sm:px-6">
+      <BackButton />
+      <header className="flex items-center justify-between py-4 pl-24 pr-4 sm:pr-6">
         <div className="motion-safe:animate-slide-left">
           <Logo />
         </div>

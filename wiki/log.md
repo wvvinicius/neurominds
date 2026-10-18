@@ -2,6 +2,9 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-18 (5)
+- **Resend em modo de teste** só entrega ao e-mail da conta (wv.vinicius@gmail.com). Enquanto não há domínio verificado, o admin ganhou "Profissionais": gera link de acesso válido por 24 h para mandar por WhatsApp. A tela de login mostra mensagem amigável nesse caso.
+
 ## 2026-10-18 (4)
 - **Contador de vídeos em cada carta**: pílula branca no canto com play e número. Pedido do Vini.
 - **Conhecido e aceito**: `/acao/<slug-inexistente>` devolve HTTP 200 com a página "carta não existe", porque o `loading.tsx` da rota começa a transmitir antes do `notFound()`. Não afeta a criança; só o código HTTP de endereço digitado à mão.

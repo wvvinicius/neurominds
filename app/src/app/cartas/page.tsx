@@ -1,4 +1,5 @@
 import { ActionCard } from "@/components/ActionCard";
+import { BackButton } from "@/components/BackButton";
 import { Footer } from "@/components/Footer";
 import { FullscreenButton } from "@/components/FullscreenButton";
 import { Logo } from "@/components/Logo";
@@ -17,7 +18,8 @@ export default async function CardsPage() {
     <>
       <Track type="open_home" />
       <div className="nm-stripe" aria-hidden="true" />
-      <header className="flex items-center justify-between px-4 py-4 sm:px-6">
+      <BackButton />
+      <header className="flex items-center justify-between py-4 pl-24 pr-4 sm:pr-6">
         <div className="motion-safe:animate-slide-left">
           <Logo />
         </div>
