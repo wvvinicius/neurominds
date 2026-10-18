@@ -24,13 +24,13 @@ export default async function ProLayout({ children }: { children: React.ReactNod
     <div className="flex min-h-dvh flex-col bg-mist/40">
       <div className="nm-stripe" aria-hidden="true" />
       <header className="bg-paper">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-3 lg:flex-row lg:items-center lg:justify-between">
           <Link href="/pro" className="flex items-center gap-3">
             <Logo />
             <span className="hidden rounded-full bg-mist px-3 py-1 text-xs font-extrabold text-ink/60 sm:inline">PROFISSIONAL</span>
           </Link>
           <nav className="flex flex-wrap items-center gap-2 text-sm">
-            <span className="hidden text-ink/50 md:inline">{me.name ?? me.email}</span>
+            <span className="mr-1 hidden text-ink/50 xl:inline">{me.name ?? me.email}</span>
             <Link href="/pro" className={`${ui.btn} ${ui.secondary} h-10 px-4`}>
               Alunos
             </Link>

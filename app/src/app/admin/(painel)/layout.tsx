@@ -16,14 +16,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="flex min-h-dvh flex-col bg-mist/40">
       <div className="nm-stripe" aria-hidden="true" />
       <header className="bg-paper">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-3 lg:flex-row lg:items-center lg:justify-between">
           <Link href="/admin" className="flex items-center gap-3">
             <Logo />
             <span className="hidden rounded-full bg-mist px-3 py-1 text-xs font-extrabold text-ink/60 sm:inline">
               GERENCIADOR
             </span>
           </Link>
-          <nav className="flex items-center gap-2 text-sm">
+          <nav className="flex flex-wrap items-center gap-2 text-sm">
             <Link href="/admin" className={`${ui.btn} ${ui.secondary} h-10 px-4`}>
               Ações
             </Link>
