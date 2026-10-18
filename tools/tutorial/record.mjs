@@ -192,6 +192,7 @@ await type(page.locator("#nickname"), nick);
 await cap("Use um apelido, nunca o nome real. O e-mail do responsável é opcional.", 2800);
 await click(page.getByRole("button", { name: "Cadastrar" }));
 await page.waitForURL(/\/pro\/alunos\//);
+const studentUrl = page.url();
 await cap("Cada criança tem um link secreto. É assim que ela abre a prancha, sem login.", 3200);
 await cap("Agora a prancha: marque só as ações que fazem sentido para essa criança.", 2800);
 for (const name of [/Chutar/, /Esperar/, /Escovar/]) {
@@ -208,9 +209,10 @@ await click(page.getByRole("link", { name: /Esperar/ }));
 await cap("Tudo que ela faz aqui vira registro da sessão: tempo, ações abertas, vídeos vistos.", 3400);
 await click(page.getByRole("button", { name: "Próximo vídeo" }));
 await sleep(2500);
-await page.goBack();
-await sleep(800);
-await page.goBack();
+await click(page.getByRole("link", { name: "Voltar para as cartas" }));
+await sleep(1200);
+// Carregamento completo: o histórico do navegador traria a página em cache, sem a sessão nova.
+await page.goto(studentUrl);
 await page.waitForURL(/\/pro\/alunos\//);
 await sleep(800);
 
