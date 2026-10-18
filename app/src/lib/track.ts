@@ -55,8 +55,17 @@ export function track(type: EventType, data: Data = {}) {
   send(type, { ...data, sessionId });
 }
 
+let inflight: Promise<void> | null = null;
+
 /** Garante uma sessão para esta aba (reaproveita por 30 min). Chamado pelo <BoardSession/>. */
-export async function ensureSession(token: string): Promise<void> {
+export function ensureSession(token: string): Promise<void> {
+  // Chamadas simultâneas (StrictMode em dev, duas montagens) compartilham a mesma criação.
+  if (!inflight) inflight = createOrReuse(token).finally(() => (inflight = null));
+  return inflight;
+}
+
+async function createOrReuse(token: string): Promise<void> {
+  if (sessionId) return;
   const key = `nm-session:${token}`;
   try {
     const raw = sessionStorage.getItem(key);
