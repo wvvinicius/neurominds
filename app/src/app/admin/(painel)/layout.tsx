@@ -5,6 +5,7 @@ import { ui } from "@/components/admin/ui";
 import { Logo } from "@/components/Logo";
 import { isAdmin } from "@/lib/auth";
 import { isPersistent } from "@/lib/db";
+import { APP_VERSION } from "@/lib/version";
 
 export const metadata = { title: "Gerenciador · NeuroMinds" };
 
@@ -57,6 +58,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       )}
 
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-6">{children}</main>
+      <footer className="px-4 py-4 text-center text-xs text-ink/40">NeuroMinds v{APP_VERSION}</footer>
     </div>
   );
 }

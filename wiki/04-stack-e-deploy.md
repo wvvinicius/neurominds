@@ -30,6 +30,9 @@ AUTH_SECRET=             ← cookie do profissional (se vazio, usa ADMIN_PASSWOR
 NEXT_PUBLIC_SITE_URL=    ← base dos links de e-mail e da criança (se vazio, deduz do request)
 ```
 
+## Versão
+Semântica, em `app/package.json`, mostrada nos rodapés. Minor sobe a cada spec entregue, patch a cada ajuste publicado. Tag git `vX.Y.Z` a cada minor. Histórico: 0.1 tela pública · 0.2 admin e métricas · 0.3 área do profissional.
+
 ## Áreas do app
 | Rota | Quem | Acesso |
 |---|---|---|

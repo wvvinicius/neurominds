@@ -3,6 +3,7 @@ import { logoutProAction } from "@/app/pro/actions";
 import { ui } from "@/components/admin/ui";
 import { Logo } from "@/components/Logo";
 import { requireProfessional } from "@/lib/pro-auth";
+import { APP_VERSION } from "@/lib/version";
 
 export const metadata = { title: "Área do profissional · NeuroMinds" };
 
@@ -52,8 +53,9 @@ export default async function ProLayout({ children }: { children: React.ReactNod
 
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-6">{children}</main>
 
-      <footer className="px-4 py-4 text-center text-xs text-ink/50">
-        Use apelidos. Nunca cadastre nome real, diagnóstico ou qualquer dado de saúde da criança.
+      <footer className="flex flex-col items-center gap-1 px-4 py-4 text-center text-xs text-ink/50">
+        <p>Use apelidos. Nunca cadastre nome real, diagnóstico ou qualquer dado de saúde da criança.</p>
+        <p className="text-ink/40">NeuroMinds v{APP_VERSION}</p>
       </footer>
     </div>
   );
