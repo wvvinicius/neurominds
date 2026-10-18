@@ -17,4 +17,6 @@ Conhecimento curado para humanos e LLMs trabalharem no projeto. Curta por desenh
 | [11-personagem-e-prompts.md](11-personagem-e-prompts.md) | Teo, o personagem dos vídeos, e os prompts prontos por cena |
 | [log.md](log.md) | Decisões com data |
 
+Tutorial em vídeo de como usar: ver "Tutorial em vídeo" em `04-stack-e-deploy.md`.
+
 Insumos brutos em `../insumos/`: logo `NeuroMinds.pdf` e transcrição da reunião de 14/10/2026.

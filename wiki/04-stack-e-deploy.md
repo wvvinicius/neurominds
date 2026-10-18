@@ -30,6 +30,11 @@ AUTH_SECRET=             ← cookie do profissional (se vazio, usa ADMIN_PASSWOR
 NEXT_PUBLIC_SITE_URL=    ← base dos links de e-mail e da criança (se vazio, deduz do request)
 ```
 
+## Tutorial em vídeo
+Gravado com Playwright a partir de `tools/tutorial/record.mjs` (cursor visível e legendas injetadas, sem narração). Percorre entrada, cartas, galeria, login do profissional, aluno, prancha, link da criança, sessão, relatório com observação e admin. Cerca de 2 min 20 s, 1280×720.
+- Vídeo: https://cs8zdtuiwv42jlfq.public.blob.vercel-storage.com/tutorial/tutorial-neurominds.mp4
+- Regravar: `cd tools/tutorial && npm install && npx playwright install chromium && node record.mjs` com o app rodando em localhost:3000.
+
 ## Versão
 Semântica, em `app/package.json`, mostrada nos rodapés. Minor sobe a cada spec entregue, patch a cada ajuste publicado. Tag git `vX.Y.Z` a cada minor. Histórico: 0.1 tela pública · 0.2 admin e métricas · 0.3 área do profissional.
 

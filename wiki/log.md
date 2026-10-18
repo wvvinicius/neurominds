@@ -2,6 +2,9 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-18 (7)
+- **Tutorial em vídeo** gravado com Playwright (`tools/tutorial/`), hospedado no Blob, link em `04-stack-e-deploy.md`. Sem narração; legendas na tela. Pedido do Vini.
+
 ## 2026-10-18 (6) — v0.3.1
 - **Observação por sessão presencial** no relatório do aluno. Pedido do Vini. Coluna `session.note`, só editável pelo profissional dono e só em sessões do consultório.
 - **Versão no rodapé** com "feito com amor pela Sunter". Regra de versionamento em `04-stack-e-deploy.md`.
