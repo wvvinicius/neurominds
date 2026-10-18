@@ -12,11 +12,11 @@ export function GuardianForm() {
     return (
       <div className="flex flex-col gap-3">
         <p className="rounded-xl bg-nm-green-soft px-4 py-3 text-sm font-extrabold text-nm-green-deep">
-          Se houver uma prancha cadastrada com esse e-mail, o link já foi enviado. Veja a caixa de entrada e o spam.
+          Se houver um painel de verbos cadastrado com esse e-mail, o link já foi enviado. Veja a caixa de entrada e o spam.
         </p>
         {state.devLinks?.map((l) => (
           <Link key={l.url} href={l.url} className={`${ui.btn} bg-nm-yellow-mid text-ink hover:bg-nm-yellow`}>
-            Abrir a prancha de {l.nickname} (modo de desenvolvimento)
+            Abrir o painel de {l.nickname} (modo de desenvolvimento)
           </Link>
         ))}
       </div>
@@ -33,7 +33,7 @@ export function GuardianForm() {
       </div>
       {state.error && <p className={ui.error}>{state.error}</p>}
       <button type="submit" disabled={pending} className={`${ui.btn} bg-nm-yellow-mid text-ink hover:bg-nm-yellow`}>
-        {pending ? "Enviando..." : "Receber o link da prancha"}
+        {pending ? "Enviando..." : "Receber o link do painel"}
       </button>
     </form>
   );

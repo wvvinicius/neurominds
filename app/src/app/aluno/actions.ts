@@ -30,15 +30,15 @@ export async function requestBoardLinksAction(_prev: GuardianState, formData: Fo
 
   const base = await siteUrl();
   const links = students.map((s) => ({ nickname: s.nickname, url: `${base}/p/${s.accessToken}` }));
-  const lines = links.map((l) => `Prancha de ${l.nickname}: ${l.url}`);
+  const lines = links.map((l) => `Painel de verbos de ${l.nickname}: ${l.url}`);
 
   try {
     const status = await sendMail({
       to: email,
-      subject: links.length === 1 ? `Prancha de ${links[0].nickname} na NeuroMinds` : "Suas pranchas na NeuroMinds",
-      text: `Olá! Aqui ${links.length === 1 ? "está o link da prancha" : "estão os links das pranchas"}. Abra no tablet ou no celular; não precisa de senha.\n\n${lines.join("\n")}\n\nGuarde este e-mail: o link é o acesso da criança.`,
-      html: `<p>Olá! Aqui ${links.length === 1 ? "está o link da prancha" : "estão os links das pranchas"}. Abra no tablet ou no celular; não precisa de senha.</p>
-${links.map((l) => `<p><a href="${l.url}" style="display:inline-block;padding:14px 24px;border-radius:999px;background:#f0d64a;color:#1a1a1a;font-weight:800;text-decoration:none">Abrir a prancha de ${l.nickname}</a></p>`).join("")}
+      subject: links.length === 1 ? `Painel de verbos de ${links[0].nickname} na NeuroMinds` : "Seus painéis de verbos na NeuroMinds",
+      text: `Olá! Aqui ${links.length === 1 ? "está o link do painel de verbos" : "estão os links dos painéis de verbos"}. Abra no tablet ou no celular; não precisa de senha.\n\n${lines.join("\n")}\n\nGuarde este e-mail: o link é o acesso da criança.`,
+      html: `<p>Olá! Aqui ${links.length === 1 ? "está o link do painel de verbos" : "estão os links dos painéis de verbos"}. Abra no tablet ou no celular; não precisa de senha.</p>
+${links.map((l) => `<p><a href="${l.url}" style="display:inline-block;padding:14px 24px;border-radius:999px;background:#f0d64a;color:#1a1a1a;font-weight:800;text-decoration:none">Abrir o painel de ${l.nickname}</a></p>`).join("")}
 <p style="color:#666;font-size:13px">Guarde este e-mail: o link é o acesso da criança.</p>`,
     });
     if (status === "sent") return { done: true };

@@ -56,7 +56,7 @@ export default async function BoardPage({ params }: Props) {
             <span className="text-7xl" aria-hidden="true">
               🧩
             </span>
-            <p className="text-2xl font-extrabold">Sua prancha ainda está sendo montada.</p>
+            <p className="text-2xl font-extrabold">Seu painel de verbos ainda está sendo montado.</p>
           </div>
         ) : (
           <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">

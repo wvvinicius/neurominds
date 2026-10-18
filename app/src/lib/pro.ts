@@ -262,11 +262,11 @@ export async function exportUsageCsv(): Promise<string> {
       SUM(e.type = 'play_video') AS videos_iniciados,
       SUM(e.type = 'finish_video') AS videos_concluidos,
       COUNT(DISTINCT e.anon_session_id) AS sessoes_anonimas,
-      COUNT(DISTINCT e.session_id) AS sessoes_de_prancha,
+      COUNT(DISTINCT e.session_id) AS sessoes_de_painel,
       SUM(CASE WHEN x.in_person = 1 THEN 1 ELSE 0 END) AS eventos_presenciais
     FROM event e LEFT JOIN action a ON a.id = e.action_id LEFT JOIN session x ON x.id = e.session_id
     GROUP BY semana, acao ORDER BY semana, acao`);
-  const cols = ["semana", "acao", "aberturas", "videos_iniciados", "videos_concluidos", "sessoes_anonimas", "sessoes_de_prancha", "eventos_presenciais"];
+  const cols = ["semana", "acao", "aberturas", "videos_iniciados", "videos_concluidos", "sessoes_anonimas", "sessoes_de_painel", "eventos_presenciais"];
   const esc = (v: unknown) => {
     const s = v == null ? "" : String(v);
     return /[",\n;]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;

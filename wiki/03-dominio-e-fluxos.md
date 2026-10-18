@@ -7,7 +7,7 @@
 | **Vídeo** | Clipe curto gerado por IA mostrando a ação em um contexto. Uma ação tem vários. | vídeo, situação |
 | **Carta** | Representação visual da ação na tela inicial. | cartinha, caixinha |
 | **Biblioteca** | Conjunto de todas as ações e vídeos cadastrados. | acervo |
-| **Prancha** (Fase 2) | Subconjunto de ações escolhido pelo profissional para um aluno. | prancha, prancheta |
+| **Painel de verbos** (Fase 2) | Subconjunto de ações escolhido pelo profissional para um aluno. Na interface é sempre "painel de verbos" (decisão de 18/10/2026); no código e nas tabelas o nome continua `board`/`student_action`. | prancha, prancheta |
 | **Aluno** (Fase 2) | Criança que usa, identificada por apelido. | paciente, estudante, João, Maria |
 | **Sessão** (Fase 2) | Período de uso contínuo de uma prancha por um aluno. | uso, jornada |
 | **Evento** | Registro de uma interação (abriu ação, viu vídeo). | indicador, pontuação |

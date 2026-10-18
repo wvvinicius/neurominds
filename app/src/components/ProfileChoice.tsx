@@ -16,7 +16,7 @@ export function ProfileChoice() {
           🧑‍⚕️
         </span>
         <span className="text-3xl font-extrabold">Sou profissional</span>
-        <span className="text-sm font-extrabold text-ink/60">Monto pranchas e acompanho o uso</span>
+        <span className="text-sm font-extrabold text-ink/60">Monto painéis de verbos e acompanho o uso</span>
       </Link>
       <Link
         href="/aluno"
@@ -29,7 +29,7 @@ export function ProfileChoice() {
           🧒
         </span>
         <span className="text-3xl font-extrabold">Sou aluno</span>
-        <span className="text-sm font-extrabold text-ink/60">Quero abrir a minha prancha</span>
+        <span className="text-sm font-extrabold text-ink/60">Quero abrir o meu painel de verbos</span>
       </Link>
     </div>
   );

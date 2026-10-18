@@ -86,7 +86,7 @@ export default async function StudentPage({ params }: Props) {
       <section className={`${ui.card} flex flex-col gap-3`}>
         <h2 className="text-lg font-extrabold">Link da criança</h2>
         <p className="text-sm text-ink/60">
-          Quem abrir este link vê só a prancha de {student.nickname}, sem login. Mande para o responsável, ou abra aqui no consultório: a sessão fica marcada como presencial.
+          Quem abrir este link vê só o painel de verbos de {student.nickname}, sem login. Mande para o responsável, ou abra aqui no consultório: a sessão fica marcada como presencial.
         </p>
         <code className="break-all rounded-xl bg-mist px-4 py-3 text-sm">{link}</code>
         <div className="flex flex-wrap gap-2">
@@ -105,8 +105,8 @@ export default async function StudentPage({ params }: Props) {
       {/* Prancha */}
       <section className={`${ui.card} flex flex-col gap-4`}>
         <div>
-          <h2 className="text-lg font-extrabold">Prancha</h2>
-          <p className="text-sm text-ink/60">Marque as ações que {student.nickname} vai ver. Quem faz judô não precisa da mesma prancha de quem faz balé.</p>
+          <h2 className="text-lg font-extrabold">Painel de verbos</h2>
+          <p className="text-sm text-ink/60">Marque as ações que {student.nickname} vai ver. Quem faz judô não precisa do mesmo painel de quem faz balé.</p>
         </div>
         <form action={saveBoardAction.bind(null, student.id)} className="flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
@@ -127,7 +127,7 @@ export default async function StudentPage({ params }: Props) {
           </div>
           <div className="flex items-center gap-3">
             <button type="submit" className={`${ui.btn} ${ui.primary}`}>
-              Salvar prancha
+              Salvar painel
             </button>
             <span className="text-sm text-ink/50">{chosen.size} de {actions.length} marcadas</span>
           </div>
@@ -212,7 +212,7 @@ export default async function StudentPage({ params }: Props) {
       <section className={`${ui.card} flex flex-wrap items-center justify-between gap-3`}>
         <div>
           <h2 className="text-lg font-extrabold">Excluir aluno</h2>
-          <p className="text-sm text-ink/60">Apaga apelido, prancha, sessões e todo o histórico. Não dá para desfazer.</p>
+          <p className="text-sm text-ink/60">Apaga apelido, painel, sessões e todo o histórico. Não dá para desfazer.</p>
         </div>
         <form action={deleteStudentAction.bind(null, student.id)}>
           <ConfirmSubmit message={`Excluir ${student.nickname} e todo o histórico?`} className={`${ui.btn} ${ui.danger}`}>

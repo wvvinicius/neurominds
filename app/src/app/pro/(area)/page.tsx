@@ -34,7 +34,7 @@ export default async function ProHome() {
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-xl font-extrabold">{s.nickname}</p>
                     <p className="text-sm text-ink/50">
-                      {s.actionCount} {s.actionCount === 1 ? "ação" : "ações"} na prancha · {s.sessionCount} {s.sessionCount === 1 ? "sessão" : "sessões"}
+                      {s.actionCount} {s.actionCount === 1 ? "ação" : "ações"} no painel ·{s.sessionCount} {s.sessionCount === 1 ? "sessão" : "sessões"}
                       {s.lastSessionAt && ` · último uso ${fmtDate(s.lastSessionAt)}`}
                     </p>
                   </div>

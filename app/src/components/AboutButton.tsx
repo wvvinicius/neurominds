@@ -49,7 +49,7 @@ export function AboutButton() {
               <br />
               Cada carta mostra uma ação, como chutar ou esperar, em vários contextos do dia a dia.
               <br />
-              Profissionais montam uma prancha para cada criança e acompanham como ela usa.
+              Profissionais montam um painel de verbos para cada criança e acompanham como ela usa.
               <br />
               Projeto educativo e sem fins lucrativos, nascido num trabalho escolar, com o Teo como guia.
             </p>

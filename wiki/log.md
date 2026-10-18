@@ -2,6 +2,10 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-18 (8)
+- **"Prancha" vira "painel de verbos"** em toda a interface e nos e-mails. Pedido do Vini. Código, rotas e tabelas não mudam. Coluna do CSV passou de `sessoes_de_prancha` para `sessoes_de_painel`.
+- **Modal "A NeuroMinds"**: resumo em quatro linhas com o Teo acenando, no cabeçalho das telas públicas.
+
 ## 2026-10-18 (7)
 - **Tutorial em vídeo** gravado com Playwright (`tools/tutorial/`), hospedado no Blob, link em `04-stack-e-deploy.md`. Sem narração; legendas na tela. Pedido do Vini.
 

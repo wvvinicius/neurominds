@@ -150,7 +150,7 @@ async function skipIntro() {
 // 1. Entrada
 await page.goto(BASE);
 await page.mouse.move(640, 360);
-await title("NeuroMinds", "Tutorial: cartas, prancha e área do profissional");
+await title("NeuroMinds", "Tutorial: cartas, painel de verbos e área do profissional");
 await cap("Ao abrir o site, o Teo se apresenta. Dá para pular, repetir ou seguir.", 3200);
 await skipIntro();
 await cap("Depois do vídeo, você escolhe quem é: profissional ou aluno.", 2800);
@@ -176,7 +176,7 @@ await click(page.getByRole("link", { name: "Voltar para as cartas" }));
 await skipIntro();
 
 // 3. Área do profissional
-await title("Área do profissional", "Cadastrar a criança, montar a prancha e acompanhar");
+await title("Área do profissional", "Cadastrar a criança, montar o painel de verbos e acompanhar");
 await click(page.getByRole("link", { name: "Sou profissional" }));
 await cap("Sem senha: você informa o e-mail e recebe um link de acesso.", 2600);
 await type(page.locator("#email"), "fono@exemplo.com");
@@ -193,13 +193,13 @@ await cap("Use um apelido, nunca o nome real. O e-mail do responsável é opcion
 await click(page.getByRole("button", { name: "Cadastrar" }));
 await page.waitForURL(/\/pro\/alunos\//);
 const studentUrl = page.url();
-await cap("Cada criança tem um link secreto. É assim que ela abre a prancha, sem login.", 3200);
-await cap("Agora a prancha: marque só as ações que fazem sentido para essa criança.", 2800);
+await cap("Cada criança tem um link secreto. É assim que ela abre o painel de verbos, sem login.", 3200);
+await cap("Agora o painel de verbos: marque só as ações que fazem sentido para essa criança.", 2800);
 for (const name of [/Chutar/, /Esperar/, /Escovar/]) {
   await click(page.locator("label").filter({ hasText: name }).first(), { settle: 500 });
 }
-await click(page.getByRole("button", { name: "Salvar prancha" }));
-await cap("Prancha salva. Copie o link para o responsável, ou abra aqui no consultório.", 3000);
+await click(page.getByRole("button", { name: "Salvar painel" }));
+await cap("Painel salvo. Copie o link para o responsável, ou abra aqui no consultório.", 3000);
 await click(page.getByRole("link", { name: "Abrir agora no consultório" }));
 
 // 4. Prancha da criança

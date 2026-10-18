@@ -23,11 +23,11 @@ export default function AlunoPage() {
             <h1 className="font-display text-3xl tracking-wide text-ink/85">Sou aluno</h1>
           </div>
           <p className="mb-5 text-sm text-ink/60">
-            A prancha abre por um link, sem senha. Digite o e-mail do responsável cadastrado pelo profissional e enviamos o link.
+            O painel de verbos abre por um link, sem senha. Digite o e-mail do responsável cadastrado pelo profissional e enviamos o link.
           </p>
           <GuardianForm />
           <p className="mt-5 text-xs text-ink/50">
-            Não tem prancha ainda? Peça ao profissional que acompanha a criança. Ou{" "}
+            Não tem painel ainda? Peça ao profissional que acompanha a criança. Ou{" "}
             <Link href="/cartas" className="font-extrabold text-nm-blue-deep underline-offset-4 hover:underline">
               explore as cartas abertas
             </Link>

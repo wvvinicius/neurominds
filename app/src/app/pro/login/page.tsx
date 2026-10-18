@@ -30,7 +30,7 @@ export default async function ProLoginPage({ searchParams }: Props) {
             <h1 className="font-display text-3xl tracking-wide text-ink/85">Sou profissional</h1>
           </div>
           <p className="mb-5 text-sm text-ink/60">
-            Monte a prancha de cada criança e acompanhe o uso. Sem senha: você recebe um link por e-mail.
+            Monte o painel de verbos de cada criança e acompanhe o uso. Sem senha: você recebe um link por e-mail.
           </p>
           {erro === "link" && (
             <p className="mb-4 rounded-xl bg-nm-red-soft px-4 py-3 text-sm font-extrabold text-nm-red-deep">
