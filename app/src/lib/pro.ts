@@ -124,6 +124,16 @@ export async function setStudentActions(proId: string, id: string, actionIds: st
   );
 }
 
+/** Pranchas ligadas a um e-mail de responsável, para o "Sou aluno" reenviar os links. */
+export async function listStudentsByGuardian(email: string): Promise<{ nickname: string; accessToken: string }[]> {
+  const db = await getDb();
+  const r = await db.execute({
+    sql: "SELECT nickname, access_token FROM student WHERE lower(guardian_email) = lower(?) ORDER BY nickname",
+    args: [email],
+  });
+  return r.rows.map((row) => ({ nickname: String(row.nickname), accessToken: String(row.access_token) }));
+}
+
 /* ---------- acesso da criança (NM-23) ---------- */
 
 export type Board = { student: Student; actions: Action[] };

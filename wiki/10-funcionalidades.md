@@ -51,7 +51,8 @@ Atualizado em 2026-10-18, após a spec 003 (área do profissional).
 | NM-19 | Login do profissional | Link mágico por e-mail. | 2 | M | feito |
 | NM-20 | Cadastro de alunos | Apelido e e-mail do responsável, sem nome real. | 2 | M | feito |
 | NM-21 | Prancha por aluno | Subconjunto de ações escolhido pelo profissional. Uma prancha por aluno. | 2 | M | feito |
-| NM-22 | Convite por e-mail | Responsável recebe link com token. Hoje o profissional copia o link e manda. | 2 | M | depois |
+| NM-22 | Convite por e-mail | Responsável recebe link com token. Hoje: o profissional copia o link, ou o responsável pede em "Sou aluno". | 2 | M | feito (autoatendimento) |
+| NM-48 | Entrada por perfil | Vídeo do Teo e depois "Sou profissional" ou "Sou aluno". Cartas abertas em `/cartas`. | 2 | P | feito |
 | NM-23 | Acesso da criança por link | Abre só as ações da prancha, sem login. | 2 | P | feito |
 | NM-24 | Modo presencial | Profissional abre a prancha no consultório; sessão marcada como presencial. | 2 | P | feito |
 | NM-25 | Sessões vinculadas | Início, fim, presencial ou em casa. | 2 | M | feito |

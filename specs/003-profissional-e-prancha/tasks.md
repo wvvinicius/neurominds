@@ -23,6 +23,10 @@
 ## Phase 5: Exportação (NM-18)
 - [x] T011 `/api/export/uso.csv` agregado por semana e ação, protegido
 
+## Phase 5b: Entrada por perfil (FR-010, emenda)
+- [x] T011b Home vira vídeo + `ProfileChoice`; cartas abertas movidas para `/cartas`; voltar das ações aponta para `/cartas`
+- [x] T011c `/aluno`: responsável pede o link da prancha por e-mail (`listStudentsByGuardian`, `requestBoardLinksAction`)
+
 ## Phase 6: Polish
 - [x] T012 Lint, tipos e build de produção limpos; fluxo testado por curl (login, aluno, prancha, sessão, eventos, relatório, CSV)
 - [x] T013 `.env.example`, wiki, constituição, catálogo e log

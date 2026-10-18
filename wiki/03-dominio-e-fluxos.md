@@ -40,8 +40,13 @@ Regras:
 
 ## Fluxos
 
+### F0 · Entrada do site (desde 18/10/2026)
+1. Abre o site. Vê o vídeo do Teo (pode pular, repetir ou seguir).
+2. Escolhe "Sou profissional" (vai ao login por e-mail) ou "Sou aluno" (responsável informa o e-mail e recebe o link da prancha).
+3. Quem só quer explorar toca em "Só quero ver as cartas" e cai em `/cartas`.
+
 ### F1 · Criança na Mostra (Fase 1)
-1. Abre o site. Vê as cartas de ações, grandes e coloridas.
+1. Abre `/cartas` (ou o atalho na tela de escolha). Vê as cartas de ações, grandes e coloridas.
 2. Toca em "chutar". A carta abre e mostra o primeiro vídeo.
 3. Assiste. Toca em "próximo" e vê outro contexto de chutar.
 4. Toca na seta grande de voltar e escolhe outra carta.

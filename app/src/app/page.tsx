@@ -1,21 +1,17 @@
-import { ActionCard } from "@/components/ActionCard";
+import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { FullscreenButton } from "@/components/FullscreenButton";
 import { IntroOverlay } from "@/components/IntroOverlay";
 import { Logo } from "@/components/Logo";
+import { ProfileChoice } from "@/components/ProfileChoice";
 import { SoundToggle } from "@/components/SoundToggle";
-import { Track } from "@/components/Track";
-import { getActions } from "@/lib/data";
 
-/* Conteúdo vem do banco e muda pelo admin: nunca pré-renderizar. */
 export const dynamic = "force-dynamic";
 
-export default async function HomePage() {
-  const actions = await getActions();
-
+/** Entrada do site: vídeo do Teo e depois a escolha de perfil. */
+export default function HomePage() {
   return (
     <>
-      <Track type="open_home" />
       <IntroOverlay />
       <div className="nm-stripe" aria-hidden="true" />
       <header className="flex items-center justify-between px-4 py-4 sm:px-6">
@@ -28,13 +24,17 @@ export default async function HomePage() {
         </div>
       </header>
 
-      <main className="flex-1 px-4 pb-8 sm:px-6">
-        <h1 className="sr-only">Cartas de ações</h1>
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
-          {actions.map((action, i) => (
-            <ActionCard key={action.id} action={action} index={i} />
-          ))}
-        </div>
+      <main className="flex flex-1 flex-col items-center justify-center gap-8 px-4 pb-8 sm:px-6">
+        <h1 className="text-center font-display text-4xl tracking-wide text-ink/85 motion-safe:animate-slide-up sm:text-5xl">
+          Quem está aqui?
+        </h1>
+        <ProfileChoice />
+        <Link
+          href="/cartas"
+          className="text-base font-extrabold text-ink/50 underline-offset-4 transition-colors hover:text-nm-blue-deep hover:underline"
+        >
+          Só quero ver as cartas
+        </Link>
       </main>
 
       <Footer />

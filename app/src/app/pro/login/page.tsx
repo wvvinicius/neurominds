@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { BackButton } from "@/components/BackButton";
 import { Logo } from "@/components/Logo";
 import { getProfessional } from "@/lib/pro-auth";
 import { ProLoginForm } from "./ProLoginForm";
@@ -16,12 +17,18 @@ export default async function ProLoginPage({ searchParams }: Props) {
   return (
     <div className="flex min-h-dvh flex-col">
       <div className="nm-stripe" aria-hidden="true" />
+      <BackButton />
       <main className="flex flex-1 flex-col items-center justify-center gap-8 px-4 py-8">
-        <Link href="/" aria-label="Ir para o site">
+        <Link href="/" aria-label="Início">
           <Logo />
         </Link>
         <div className="w-full max-w-md rounded-2xl bg-paper p-6 ring-1 ring-fog motion-safe:animate-pop">
-          <h1 className="mb-1 font-display text-3xl tracking-wide text-ink/85">Área do profissional</h1>
+          <div className="mb-1 flex items-center gap-3">
+            <span className="text-5xl" aria-hidden="true">
+              🧑‍⚕️
+            </span>
+            <h1 className="font-display text-3xl tracking-wide text-ink/85">Sou profissional</h1>
+          </div>
           <p className="mb-5 text-sm text-ink/60">
             Monte a prancha de cada criança e acompanhe o uso. Sem senha: você recebe um link por e-mail.
           </p>

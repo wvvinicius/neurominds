@@ -33,7 +33,9 @@ NEXT_PUBLIC_SITE_URL=    ← base dos links de e-mail e da criança (se vazio, d
 ## Áreas do app
 | Rota | Quem | Acesso |
 |---|---|---|
-| `/` e `/acao/[slug]` | criança, público | aberto |
+| `/` | todos | vídeo do Teo e escolha de perfil |
+| `/cartas` e `/acao/[slug]` | criança, público | aberto, sem login (stand da Mostra) |
+| `/aluno` | responsável | pede o link da prancha por e-mail |
 | `/p/[token]` | criança com prancha | link secreto, sem login |
 | `/pro` | profissional | link mágico por e-mail |
 | `/admin` | equipe de conteúdo | senha única |

@@ -23,7 +23,7 @@ export default async function ActionPage({ params }: Props) {
     <div className="flex h-dvh flex-col overflow-hidden">
       <Track type="open_action" actionId={action.id} />
       <div className="nm-stripe shrink-0" aria-hidden="true" />
-      <BackButton />
+      <BackButton href="/cartas" />
 
       <header className="flex shrink-0 items-center justify-center px-24 py-3 sm:py-4">
         <h1 className="flex items-center gap-3 font-display text-4xl tracking-wide motion-safe:animate-slide-up sm:text-5xl">

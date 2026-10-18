@@ -2,6 +2,11 @@
 
 Formato: data · decisão · motivo. Mais recente no topo.
 
+## 2026-10-18 (2) — entrada por perfil
+- **Home vira vídeo do Teo + "Sou profissional | Sou aluno".** Motivo: pedido do Vini. Cartas abertas foram para `/cartas`, com atalho discreto, porque o stand da Mostra não terá login.
+- **"Sou aluno" é um link mágico para o responsável**: informa o e-mail cadastrado pelo profissional e recebe o link da prancha. Cobre o NM-22 em autoatendimento. A tela responde igual com ou sem cadastro, para não revelar quem está no sistema.
+- **Chave do Resend gravada** em produção e preview. Sem domínio verificado, o Resend só entrega ao e-mail da própria conta.
+
 ## 2026-10-18 — spec 003
 - **Área do profissional no ar** (`/pro`): login por link mágico, alunos por apelido, prancha por aluno, link da criança, sessões, relatório, exclusão em cascata, CSV anônimo.
 - **Uma prancha por aluno.** A entidade `board` do modelo original virou `student_action`. Motivo: MVP; várias pranchas nomeadas só se um profissional pedir.
